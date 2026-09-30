@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Omari Tours | Cape Town Luxury Chauffeur & Transfers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090B0E;
+      --card-bg: #12161F;
+      --card-border: rgba(212, 175, 55, 0.2);
+      --gold: #D4AF37;
+      --gold-light: #F3E5AB;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --whatsapp: #25D366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Top Strip */
+    .top-bar {
+      background: #0d1117;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .top-contacts {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .top-contacts a {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .header-location-box {
+      position: relative;
+      min-width: 270px;
+    }
+
+    .header-location-box input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .header-location-box input:focus {
+      border-color: var(--gold);
+    }
+
+    .autocomplete-list {
+      position: absolute;
+      top: 105%;
+      left: 0;
+      right: 0;
+      background: #161b22;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .autocomplete-item {
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .autocomplete-item:hover {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold-light);
+    }
+
+    /* Navigation */
+    header {
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(9, 11, 14, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .btn-reserve {
+      background: linear-gradient(135deg, #D4AF37, #AA820A);
+      color: #000;
+      padding: 10px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-reserve:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 24px 50px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--gold-light);
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+
+    /* Vehicle Showcase */
+    .vehicle-section {
+      max-width: 1100px;
+      margin: 20px auto 80px;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #fff;
+    }
+
+    .section-title p {
+      color: var(--gold);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .main-showcase-container {
+      width: 100%;
+      height: 520px;
+      background: #11151c;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .main-showcase-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 14px;
+    }
+
+    .gallery-thumb-card {
+      height: 110px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: #141923;
+      transition: all 0.2s ease;
+    }
+
+    .gallery-thumb-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .gallery-thumb-card.active {
+      border-color: var(--gold);
+    }
+
+    .gallery-thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Reviews Section */
+    .reviews-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .reviewer-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+    }
+
+    .reviewer-flag {
+      font-size: 1.4rem;
+    }
+
+    .reviewer-info h4 {
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .reviewer-info span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Team Section */
+    .team-section {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 32px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.1);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 18px;
+    }
+
+    .team-card h3 {
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .team-phone {
+      color: var(--text);
+      font-size: 1.05rem;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .team-email {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 22px;
+    }
+
+    .btn-driver-wa {
+      background: var(--whatsapp);
+      color: #fff;
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Booking Form Section */
+    .booking-section {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 40px 32px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .phone-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .phone-row select {
+      width: 130px;
+      flex-shrink: 0;
+    }
+
+    .btn-submit-booking {
+      width: 100%;
+      background: linear-gradient(135deg, #D4AF37, #AA820A);
+      color: #000;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .main-showcase-container {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="top-bar">
+    <div class="top-contacts">
+      <span>Lead Driver: <a href="tel:+27729216336">072 921 6336</a></span>
+      <span>Logistics: <a href="tel:+27682459527">068 245 9527</a></span>
+    </div>
+    
+    <!-- Location Autocomplete in Top Bar -->
+    <div class="header-location-box">
+      <input type="text" id="topLocationInput" placeholder="Your Cape Town location..." autocomplete="off">
+      <div class="autocomplete-list" id="topLocationList"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">OMARI <span>TOURS</span></div>
+    <nav>
+      <a href="#vehicle">Toyota Rumion TX</a>
+      <a href="#reviews">Tourist Reviews</a>
+      <a href="#team">Meet The Team</a>
+      <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">Cape Town Chauffeur & Private Tours</div>
+    <h1>Premium Private Chauffeur in Cape Town</h1>
+    <p>Personalized transfers, airport collections, and scenic peninsula journeys in our pristine 7-seater Toyota Rumion TX.</p>
+    <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
+  </section>
+
+  <!-- Vehicle Showcase Section - Clean Gallery With No Labels -->
+  <section class="vehicle-section" id="vehicle">
+    <div class="section-title">
+      <h2>Toyota Rumion TX</h2>
+      <p>Executive 7-Seater MPV</p>
+    </div>
+
+    <!-- Main Large Showcase View (Clean - No Labels) -->
+    <div class="main-showcase-container">
+      <img id="mainVehiclePhoto" src="rumion-front.jpg.jpeg" alt="Toyota Rumion TX">
+    </div>
+
+    <!-- Thumbnails matching your exact GitHub files (Clean - No Labels) -->
+    <div class="gallery-grid">
+      <div class="gallery-thumb-card active" onclick="switchVehiclePhoto('rumion-front.jpg.jpeg', this)">
+        <img src="rumion-front.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-properside.jpg.jpeg', this)">
+        <img src="rumion-properside.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-side.jpg.jpeg', this)">
+        <img src="rumion-side.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-sidetwo.jpg.jpeg', this)">
+        <img src="rumion-sidetwo.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-back.jpg.jpeg', this)">
+        <img src="rumion-back.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-tailgate.jpg.jpeg', this)">
+        <img src="rumion-tailgate.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-interior.jpg.jpeg', this)">
+        <img src="rumion-interior.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-interiortwo.jpg.jpeg', this)">
+        <img src="rumion-interiortwo.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+    </div>
+  </section>
+
+  <!-- Guest Reviews & Tourist Experiences -->
+  <section class="reviews-section" id="reviews">
+    <div class="section-title">
+      <h2>Tourist Experiences</h2>
+      <p>Rated 5.0 Stars By Cape Town Visitors</p>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">“Kalenga was an absolute gentleman and the best chauffeur we could have asked for. He picked our family of five up at CPT Airport with all our luggage seamlessly. The Toyota Rumion was spotless and the air conditioning was a lifesaver!”</p>
+        </div>
+        <div class="reviewer-meta">
+          <div class="reviewer-flag">🇬🇧</div>
+          <div class="reviewer-info">
+            <h4>David & Sarah Jenkins</h4>
+            <span>London, United Kingdom • Airport & City Transfers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">“We booked a full-day Cape Peninsula tour down to Boulders Beach and Cape Point. Booking through Mima was fast and effortless on WhatsApp. Kalenga knew all the best viewpoints without getting stuck in tour-bus crowds. 10/10 experience!”</p>
+        </div>
+        <div class="reviewer-meta">
+          <div class="reviewer-flag">🇩🇪</div>
+          <div class="reviewer-info">
+            <h4>Maximilian Bauer</h4>
+            <span>Munich, Germany • Cape Peninsula Private Tour</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">“Top tier service! Traveling as 4 adults, having a private chauffeur for our Stellenbosch and Franschhoek wine day made the trip totally stress-free. Very safe driving, prompt timing, and fair transparent pricing.”</p>
+        </div>
+        <div class="reviewer-meta">
+          <div class="reviewer-flag">🇺🇸</div>
+          <div class="reviewer-info">
+            <h4>Elena Rodriguez</h4>
+            <span>California, USA • Franschhoek Winelands Day Trip</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet The Team Section -->
+  <section class="team-section" id="team">
+    <div class="section-title">
+      <h2>Meet The Team</h2>
+      <p>Direct Support & Chauffeurs</p>
+    </div>
+
+    <div class="team-grid">
+      <!-- Kalenga Omari -->
+      <div class="team-card">
+        <div class="team-avatar">👨🏾‍✈️</div>
+        <h3>Kalenga Omari</h3>
+        <div class="team-role">Lead Driver & Vehicle Owner</div>
+        <a class="team-phone" href="tel:+27729216336">072 921 6336</a>
+        <a class="team-email" href="mailto:omarikalenga@gmail.com">omarikalenga@gmail.com</a>
+        <a class="btn-driver-wa" href="https://wa.me/27729216336?text=Hi%20Kalenga,%20I%20would%20like%20to%20inquire%20about%20a%20private%20chauffeur%20booking." target="_blank">WhatsApp Driver Directly</a>
+      </div>
+
+      <!-- Mima Omari -->
+      <div class="team-card">
+        <div class="team-avatar">📋</div>
+        <h3>Mima Omari</h3>
+        <div class="team-role">Bookings & Logistics Coordinator</div>
+        <a class="team-phone" href="tel:+27682459527">068 245 9527</a>
+        <a class="team-email" href="mailto:omarimima123@gmail.com">omarimima123@gmail.com</a>
+        <a class="btn-driver-wa" href="https://wa.me/27682459527?text=Hi%20Mima,%20I%20would%20like%20to%20book%20a%20tour%20with%20Omari%20Tours." target="_blank">WhatsApp Bookings</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservation Section -->
+  <section class="booking-section" id="reserve">
+    <div class="section-title">
+      <h2>Reserve Vehicle</h2>
+      <p>Book Your Transfer Or Tour</p>
+    </div>
+
+    <form id="bookingForm" onsubmit="handleBooking(event)">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="custName" placeholder="Full Name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Contact Phone</label>
+        <div class="phone-row">
+          <select id="countryCode">
+            <option value="+27">🇿🇦 +27</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+49">🇩🇪 +49</option>
+            <option value="+33">🇫🇷 +33</option>
+            <option value="+31">🇳🇱 +31</option>
+            <option value="+61">🇦🇺 +61</option>
+          </select>
+          <input type="tel" id="custPhone" placeholder="Phone Number" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Pickup Location</label>
+        <input type="text" id="bookingPickup" placeholder="Start typing address, hotel or airport..." autocomplete="off" required>
+        <div class="autocomplete-list" id="bookingPickupList"></div>
+      </div>
+
+      <div class="form-group">
+        <label>Dropoff Destination / Tour</label>
+        <input type="text" id="bookingDropoff" placeholder="Destination or full day itinerary..." required>
+      </div>
+
+      <div class="form-group">
+        <label>Date & Time</label>
+        <input type="datetime-local" id="bookingDateTime" required>
+      </div>
+
+      <button type="submit" class="btn-submit-booking">Reserve Vehicle</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Omari Tours Cape Town. Lead Driver Kalenga Omari | Bookings & Logistics Mima Omari.</p>
+  </footer>
+
+  <script>
+    function switchVehiclePhoto(src, cardEl) {
+      document.getElementById('mainVehiclePhoto').src = src;
+      document.querySelectorAll('.gallery-thumb-card').forEach(c => c.classList.remove('active'));
+      if(cardEl) cardEl.classList.add('active');
+    }
+
+    const ctLocations = [
+      "Cape Town International Airport (CPT)",
+      "V&A Waterfront, Cape Town",
+      "Camps Bay Beach, Cape Town",
+      "Table Mountain Aerial Cableway",
+      "Kirstenbosch Botanical Gardens",
+      "Sea Point Promenade",
+      "Boulders Beach (Penguins), Simon's Town",
+      "Cape Point & Cape of Good Hope",
+      "Franschhoek Wine Tram",
+      "Stellenbosch Town Centre",
+      "Constantia Wine Route",
+      "The Silo Hotel, V&A Waterfront",
+      "One&Only Cape Town",
+      "Twelve Apostles Hotel & Spa",
+      "Bloubergstrand Beach",
+      "Green Point Stadium (DHL Stadium)"
+    ];
+
+    function setupAutocomplete(inputId, listId) {
+      const input = document.getElementById(inputId);
+      const list = document.getElementById(listId);
+
+      input.addEventListener('input', function() {
+        const val = this.value.trim().toLowerCase();
+        list.innerHTML = '';
+        if (!val) {
+          list.style.display = 'none';
+          return;
+        }
+
+        const matches = ctLocations.filter(loc => loc.toLowerCase().includes(val));
+        if (matches.length === 0) {
+          list.style.display = 'none';
+          return;
+        }
+
+        matches.forEach(loc => {
+          const div = document.createElement('div');
+          div.className = 'autocomplete-item';
+          div.textContent = loc;
+          div.onclick = function() {
+            input.value = loc;
+            list.style.display = 'none';
+            if (inputId === 'topLocationInput') {
+              document.getElementById('bookingPickup').value = loc;
+            }
+          };
+          list.appendChild(div);
+        });
+        list.style.display = 'block';
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!input.contains(e.target) && !list.contains(e.target)) {
+          list.style.display = 'none';
+        }
+      });
+    }
+
+    setupAutocomplete('topLocationInput', 'topLocationList');
+    setupAutocomplete('bookingPickup', 'bookingPickupList');
+
+    function handleBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value;
+      const code = document.getElementById('countryCode').value;
+      const phone = document.getElementById('custPhone').value;
+      const pickup = document.getElementById('bookingPickup').value;
+      const dropoff = document.getElementById('bookingDropoff').value;
+      const time = document.getElementById('bookingDateTime').value;
+
+      const msg = `*NEW RESERVATION - OMARI TOURS*%0A` +
+                  `*Client:* ${encodeURIComponent(name)}%0A` +
+                  `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
+                  `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
+                  `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
+                  `*Date/Time:* ${encodeURIComponent(time)}%0A` +
+                  `*Vehicle:* Toyota Rumion TX 7-Seater`;
+
+      window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
+    }
+  </script>
+</body>
+</html>
