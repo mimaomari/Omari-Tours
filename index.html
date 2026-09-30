@@ -12,7 +12,7 @@
     :root {
       --bg: #090B0E;
       --card-bg: rgba(18, 22, 31, 0.95);
-      --card-border: rgba(212, 175, 55, 0.2);
+      --card-border: rgba(212, 175, 55, 0.25);
       --gold: #D4AF37;
       --gold-light: #F3E5AB;
       --text: #F1F5F9;
@@ -167,14 +167,14 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     }
 
-    /* Table Mountain Scenic Hero Background */
+    /* Table Mountain Sunset Background */
     .hero {
       position: relative;
-      padding: 120px 24px 100px;
+      padding: 135px 24px 110px;
       text-align: center;
       background: 
-        linear-gradient(180deg, rgba(9, 11, 14, 0.55) 0%, rgba(9, 11, 14, 0.82) 65%, #090B0E 100%),
-        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=85') center 30% / cover no-repeat;
+        linear-gradient(180deg, rgba(9, 11, 14, 0.45) 0%, rgba(9, 11, 14, 0.75) 50%, #090B0E 100%),
+        url('table-mountain.jpg') center 35% / cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -192,14 +192,14 @@
       display: inline-block;
       padding: 6px 18px;
       border-radius: 20px;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid rgba(212, 175, 55, 0.45);
+      background: rgba(212, 175, 55, 0.18);
+      border: 1px solid rgba(212, 175, 55, 0.5);
       color: var(--gold-light);
       font-size: 0.85rem;
       margin-bottom: 22px;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     .hero h1 {
@@ -208,15 +208,15 @@
       line-height: 1.15;
       margin-bottom: 22px;
       color: #fff;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
     }
 
     .hero p {
-      color: #cbd5e1;
+      color: #e2e8f0;
       font-size: 1.2rem;
       max-width: 680px;
       margin: 0 auto 36px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
     }
 
     /* Vehicle Showcase */
@@ -656,7 +656,7 @@
         height: 300px;
       }
       .hero {
-        padding: 90px 20px 60px;
+        padding: 95px 20px 65px;
       }
     }
   </style>
@@ -689,7 +689,7 @@
     </nav>
   </header>
 
-  <!-- Hero with Scenic Table Mountain Background -->
+  <!-- Hero with Table Mountain Sunset Backdrop -->
   <section class="hero">
     <div class="hero-content">
       <div class="hero-badge">Cape Town Chauffeur & Private Tours</div>
@@ -706,7 +706,7 @@
       <p>Executive 7-Seater MPV</p>
     </div>
 
-    <!-- Vehicle Description Card -->
+    <!-- Professional Vehicle Description -->
     <div class="vehicle-description-card">
       <p>
         The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, executive travelers, and visiting families. Combining modern Japanese refinement with spacious 7-passenger capability, it features individual rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s mountain passes, coastal highways, and city boulevards. Whether configured as an expansive 6-passenger sightseeing tourer or flat-folded to accommodate up to 4 travelers with full airport luggage sets, it ensures every journey is safe, tranquil, and distinctly first-class.
@@ -762,7 +762,6 @@
     </div>
 
     <div class="tours-grid">
-      <!-- Tour 1 -->
       <div class="tour-card">
         <div>
           <span class="tour-badge">Full Day • Most Popular</span>
@@ -778,7 +777,6 @@
         <button class="tour-action-btn" onclick="selectTour('Cape Peninsula & Penguin Tour')">Book This Tour</button>
       </div>
 
-      <!-- Tour 2 -->
       <div class="tour-card">
         <div>
           <span class="tour-badge">Full Day • Scenic & Wine</span>
@@ -794,7 +792,6 @@
         <button class="tour-action-btn" onclick="selectTour('Stellenbosch & Franschhoek Wine Tour')">Book This Tour</button>
       </div>
 
-      <!-- Tour 3 -->
       <div class="tour-card">
         <div>
           <span class="tour-badge">Half Day / Flexible</span>
