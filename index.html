@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Omari Tours | Cape Town Luxury Chauffeur & Transfers</title>
+  <title>Omari Tours | Cape Town Luxury Chauffeur & Private Tours</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -167,7 +167,7 @@
 
     /* Hero */
     .hero {
-      padding: 80px 24px 50px;
+      padding: 85px 24px 55px;
       text-align: center;
       max-width: 900px;
       margin: 0 auto;
@@ -210,7 +210,7 @@
 
     .section-title {
       text-align: center;
-      margin-bottom: 36px;
+      margin-bottom: 30px;
     }
 
     .section-title h2 {
@@ -225,6 +225,42 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       margin-top: 6px;
+    }
+
+    /* Vehicle Description Card */
+    .vehicle-description-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .vehicle-description-card p {
+      color: #e2e8f0;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .vehicle-features-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .feature-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .main-showcase-container {
@@ -277,6 +313,109 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    /* Cape Town Tours Section */
+    .tours-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .tours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .tour-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+
+    .tour-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .tour-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--gold-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .tour-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .tour-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .tour-highlights {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .tour-highlights li {
+      color: #e2e8f0;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tour-highlights li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .tour-action-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      display: block;
+    }
+
+    .tour-action-btn:hover {
+      background: var(--gold);
+      color: #000;
     }
 
     /* Reviews Section */
@@ -522,6 +661,7 @@
     <div class="logo">OMARI <span>TOURS</span></div>
     <nav>
       <a href="#vehicle">Toyota Rumion TX</a>
+      <a href="#tours">Cape Town Tours</a>
       <a href="#reviews">Tourist Reviews</a>
       <a href="#team">Meet The Team</a>
       <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
@@ -536,11 +676,25 @@
     <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
   </section>
 
-  <!-- Vehicle Showcase Section - Clean Gallery With No Labels -->
+  <!-- Vehicle Showcase Section -->
   <section class="vehicle-section" id="vehicle">
     <div class="section-title">
       <h2>Toyota Rumion TX</h2>
       <p>Executive 7-Seater MPV</p>
+    </div>
+
+    <!-- Professional Vehicle Description -->
+    <div class="vehicle-description-card">
+      <p>
+        The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, executive travelers, and visiting families. Combining modern Japanese refinement with spacious 7-passenger capability, it features individual rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s mountain passes, coastal highways, and city boulevards. Whether configured as an expansive 6-passenger sightseeing tourer or flat-folded to accommodate up to 4 travelers with full airport luggage sets, it ensures every journey is safe, tranquil, and distinctly first-class.
+      </p>
+      <div class="vehicle-features-pills">
+        <span class="feature-pill">✦ 7-Seater Executive Layout</span>
+        <span class="feature-pill">✦ Dual-Zone Climate A/C</span>
+        <span class="feature-pill">✦ Flat-Fold Luggage Bay</span>
+        <span class="feature-pill">✦ Onboard Device Charging</span>
+        <span class="feature-pill">✦ Sanitized & Inspected Daily</span>
+      </div>
     </div>
 
     <!-- Main Large Showcase View (Clean - No Labels) -->
@@ -573,6 +727,64 @@
       </div>
       <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-interiortwo.jpg.jpeg', this)">
         <img src="rumion-interiortwo.jpg.jpeg" alt="Toyota Rumion">
+      </div>
+    </div>
+  </section>
+
+  <!-- Cape Town Tours Section -->
+  <section class="tours-section" id="tours">
+    <div class="section-title">
+      <h2>Cape Town Private Tours</h2>
+      <p>Curated Chauffeur Itineraries & Sightseeing</p>
+    </div>
+
+    <div class="tours-grid">
+      <!-- Tour 1 -->
+      <div class="tour-card">
+        <div>
+          <span class="tour-badge">Full Day • Most Popular</span>
+          <h3>Cape Peninsula & Penguin Experience</h3>
+          <p>The definitive Cape Town day journey. We cruise along the Atlantic Seaboard, navigate Chapman's Peak Drive, visit the penguins, and stand at Africa’s southwesternmost point.</p>
+          <ul class="tour-highlights">
+            <li>Camps Bay, Hout Bay & Chapman’s Peak Drive</li>
+            <li>Cape Point Nature Reserve & Cape of Good Hope</li>
+            <li>Boulders Beach African Penguin Colony</li>
+            <li>Historical Simon’s Town & Kalk Bay harbour</li>
+          </ul>
+        </div>
+        <button class="tour-action-btn" onclick="selectTour('Cape Peninsula & Penguin Tour')">Book This Tour</button>
+      </div>
+
+      <!-- Tour 2 -->
+      <div class="tour-card">
+        <div>
+          <span class="tour-badge">Full Day • Scenic & Wine</span>
+          <h3>Stellenbosch & Franschhoek Winelands</h3>
+          <p>Indulge in South Africa’s world-renowned wine valleys without driving worries. Private door-to-door chauffeur service between premier historic estates, cellar doors, and gourmet lunches.</p>
+          <ul class="tour-highlights">
+            <li>Historic Stellenbosch town walk & oak-lined streets</li>
+            <li>Franschhoek valley panoramas & monument views</li>
+            <li>Customized stops at boutique & world-class estates</li>
+            <li>Safe, private chauffeur handling all driving & wine transport</li>
+          </ul>
+        </div>
+        <button class="tour-action-btn" onclick="selectTour('Stellenbosch & Franschhoek Wine Tour')">Book This Tour</button>
+      </div>
+
+      <!-- Tour 3 -->
+      <div class="tour-card">
+        <div>
+          <span class="tour-badge">Half Day / Flexible</span>
+          <h3>Table Mountain & Historic City Loop</h3>
+          <p>Ideal for first-time arrivals. Take in Cape Town’s iconic skyline landmarks, vibrant cultural heritage, and panoramic viewpoints in complete luxury comfort.</p>
+          <ul class="tour-highlights">
+            <li>Table Mountain Aerial Cableway drop-off & collection</li>
+            <li>Vibrant Bo-Kaap cobblestone streets & colorful facades</li>
+            <li>Kirstenbosch National Botanical Gardens</li>
+            <li>Signal Hill sunset panorama over the Atlantic Ocean</li>
+          </ul>
+        </div>
+        <button class="tour-action-btn" onclick="selectTour('Table Mountain & City Tour')">Book This Tour</button>
       </div>
     </div>
   </section>
@@ -719,6 +931,11 @@
       if(cardEl) cardEl.classList.add('active');
     }
 
+    function selectTour(tourName) {
+      document.getElementById('bookingDropoff').value = tourName;
+      document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
+    }
+
     const ctLocations = [
       "Cape Town International Airport (CPT)",
       "V&A Waterfront, Cape Town",
@@ -795,7 +1012,7 @@
                   `*Client:* ${encodeURIComponent(name)}%0A` +
                   `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
                   `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                  `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
+                  `*Dropoff / Tour:* ${encodeURIComponent(dropoff)}%0A` +
                   `*Date/Time:* ${encodeURIComponent(time)}%0A` +
                   `*Vehicle:* Toyota Rumion TX 7-Seater`;
 
