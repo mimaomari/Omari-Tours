@@ -11,7 +11,7 @@
   <style>
     :root {
       --bg: #090B0E;
-      --card-bg: #12161F;
+      --card-bg: rgba(18, 22, 31, 0.95);
       --card-border: rgba(212, 175, 55, 0.2);
       --gold: #D4AF37;
       --gold-light: #F3E5AB;
@@ -36,7 +36,7 @@
 
     /* Top Strip */
     .top-bar {
-      background: #0d1117;
+      background: rgba(13, 17, 23, 0.95);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 10px 24px;
       font-size: 0.85rem;
@@ -45,6 +45,8 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
+      position: relative;
+      z-index: 1000;
     }
 
     .top-contacts {
@@ -66,8 +68,8 @@
 
     .header-location-box input {
       width: 100%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.35);
       padding: 6px 12px;
       border-radius: 6px;
       color: #fff;
@@ -89,7 +91,7 @@
       border-radius: 6px;
       max-height: 220px;
       overflow-y: auto;
-      z-index: 1000;
+      z-index: 1100;
       display: none;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
@@ -112,9 +114,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(9, 11, 14, 0.85);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       position: sticky;
       top: 0;
       z-index: 900;
@@ -165,46 +167,62 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     }
 
-    /* Hero */
+    /* Table Mountain Scenic Hero Background */
     .hero {
-      padding: 85px 24px 55px;
+      position: relative;
+      padding: 120px 24px 100px;
       text-align: center;
+      background: 
+        linear-gradient(180deg, rgba(9, 11, 14, 0.55) 0%, rgba(9, 11, 14, 0.82) 65%, #090B0E 100%),
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=85') center 30% / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
       max-width: 900px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-badge {
       display: inline-block;
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 20px;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.45);
       color: var(--gold-light);
       font-size: 0.85rem;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
+      backdrop-filter: blur(8px);
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
       line-height: 1.15;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
       color: #fff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     }
 
     .hero p {
-      color: var(--text-muted);
-      font-size: 1.15rem;
+      color: #cbd5e1;
+      font-size: 1.2rem;
       max-width: 680px;
-      margin: 0 auto 32px;
+      margin: 0 auto 36px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
     /* Vehicle Showcase */
     .vehicle-section {
       max-width: 1100px;
-      margin: 20px auto 80px;
+      margin: 30px auto 80px;
       padding: 0 24px;
     }
 
@@ -637,6 +655,9 @@
       .main-showcase-container {
         height: 300px;
       }
+      .hero {
+        padding: 90px 20px 60px;
+      }
     }
   </style>
 </head>
@@ -668,12 +689,14 @@
     </nav>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero with Scenic Table Mountain Background -->
   <section class="hero">
-    <div class="hero-badge">Cape Town Chauffeur & Private Tours</div>
-    <h1>Premium Private Chauffeur in Cape Town</h1>
-    <p>Personalized transfers, airport collections, and scenic peninsula journeys in our pristine 7-seater Toyota Rumion TX.</p>
-    <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
+    <div class="hero-content">
+      <div class="hero-badge">Cape Town Chauffeur & Private Tours</div>
+      <h1>Explore Cape Town in Complete Comfort</h1>
+      <p>Bespoke peninsula tours, wine valley escapes, and executive airport transfers driven by local professionals in our 7-seater Toyota Rumion TX.</p>
+      <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
+    </div>
   </section>
 
   <!-- Vehicle Showcase Section -->
@@ -683,7 +706,7 @@
       <p>Executive 7-Seater MPV</p>
     </div>
 
-    <!-- Professional Vehicle Description -->
+    <!-- Vehicle Description Card -->
     <div class="vehicle-description-card">
       <p>
         The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, executive travelers, and visiting families. Combining modern Japanese refinement with spacious 7-passenger capability, it features individual rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s mountain passes, coastal highways, and city boulevards. Whether configured as an expansive 6-passenger sightseeing tourer or flat-folded to accommodate up to 4 travelers with full airport luggage sets, it ensures every journey is safe, tranquil, and distinctly first-class.
