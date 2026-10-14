@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
   
+  <!-- Online Payment Gateway SDK (Paystack) -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
   <style>
     :root {
       --bg: #090B0E;
@@ -167,7 +170,7 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     }
 
-    /* Table Mountain Sunset Background */
+    /* Hero with Table Mountain Sunset Backdrop */
     .hero {
       position: relative;
       padding: 135px 24px 110px;
@@ -219,7 +222,7 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
     }
 
-    /* Vehicle Showcase */
+    /* Fleet Showcase */
     .vehicle-section {
       max-width: 1100px;
       margin: 30px auto 80px;
@@ -245,7 +248,6 @@
       margin-top: 6px;
     }
 
-    /* Vehicle Description Card */
     .vehicle-description-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -303,27 +305,29 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
     }
 
     .gallery-thumb-card {
-      height: 110px;
-      border-radius: 10px;
+      position: relative;
+      height: 140px;
+      border-radius: 12px;
       overflow: hidden;
       cursor: pointer;
-      border: 2px solid transparent;
+      border: 2px solid rgba(255, 255, 255, 0.1);
       background: #141923;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .gallery-thumb-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(212, 175, 55, 0.5);
+      transform: translateY(-3px);
+      border-color: rgba(212, 175, 55, 0.6);
     }
 
     .gallery-thumb-card.active {
       border-color: var(--gold);
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
     }
 
     .gallery-thumb-card img {
@@ -331,6 +335,20 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    .thumb-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent, rgba(9, 11, 14, 0.95));
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 10px 8px 6px;
+      text-align: center;
+      letter-spacing: 0.3px;
     }
 
     /* Cape Town Tours Section */
@@ -577,7 +595,7 @@
       font-size: 0.9rem;
     }
 
-    /* Booking Form Section */
+    /* Booking & Online Checkout Section */
     .booking-section {
       max-width: 800px;
       margin: 80px auto;
@@ -626,17 +644,62 @@
       flex-shrink: 0;
     }
 
+    .payment-selection-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 22px;
+    }
+
+    .payment-selection-box label {
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .payment-options-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .payment-radio-option {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .payment-radio-option input[type="radio"] {
+      accent-color: var(--gold);
+      width: 18px;
+      height: 18px;
+    }
+
     .btn-submit-booking {
       width: 100%;
       background: linear-gradient(135deg, #D4AF37, #AA820A);
       color: #000;
       border: none;
-      padding: 14px;
+      padding: 15px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
       margin-top: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-submit-booking:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
     }
 
     footer {
@@ -681,7 +744,7 @@
   <header>
     <div class="logo">OMARI <span>TOURS</span></div>
     <nav>
-      <a href="#vehicle">Toyota Rumion TX</a>
+      <a href="#fleet">Our Fleet</a>
       <a href="#tours">Cape Town Tours</a>
       <a href="#reviews">Tourist Reviews</a>
       <a href="#team">Meet The Team</a>
@@ -694,62 +757,61 @@
     <div class="hero-content">
       <div class="hero-badge">Cape Town Chauffeur & Private Tours</div>
       <h1>Explore Cape Town in Complete Comfort</h1>
-      <p>Bespoke peninsula tours, wine valley escapes, and executive airport transfers driven by local professionals in our 7-seater Toyota Rumion TX.</p>
+      <p>Bespoke peninsula tours, wine valley escapes, and executive VIP transfers driven by local professionals across our luxury fleet.</p>
       <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
     </div>
   </section>
 
-  <!-- Vehicle Showcase Section -->
-  <section class="vehicle-section" id="vehicle">
+  <!-- Fleet Showcase Section (4 Luxury Vehicles) -->
+  <section class="vehicle-section" id="fleet">
     <div class="section-title">
-      <h2>Toyota Rumion TX</h2>
-      <p>Executive 7-Seater MPV</p>
+      <h2 id="fleetTitle">Toyota Rumion TX</h2>
+      <p id="fleetCategory">Flagship 7-Seater Executive MPV</p>
     </div>
 
-    <!-- Professional Vehicle Description -->
+    <!-- Dynamic Fleet Description Card -->
     <div class="vehicle-description-card">
-      <p>
-        The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, executive travelers, and visiting families. Combining modern Japanese refinement with spacious 7-passenger capability, it features individual rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s mountain passes, coastal highways, and city boulevards. Whether configured as an expansive 6-passenger sightseeing tourer or flat-folded to accommodate up to 4 travelers with full airport luggage sets, it ensures every journey is safe, tranquil, and distinctly first-class.
+      <p id="fleetDescription">
+        The <strong>Toyota Rumion TX</strong> is our premier multi-purpose tour vehicle, designed for visiting families, luggage-heavy airport runs, and full-day peninsula excursions. Spacious, quiet, and equipped with dedicated rear air conditioning for effortless sightseeing across Cape Town.
       </p>
-      <div class="vehicle-features-pills">
-        <span class="feature-pill">✦ 7-Seater Executive Layout</span>
-        <span class="feature-pill">✦ Dual-Zone Climate A/C</span>
-        <span class="feature-pill">✦ Flat-Fold Luggage Bay</span>
-        <span class="feature-pill">✦ Onboard Device Charging</span>
-        <span class="feature-pill">✦ Sanitized & Inspected Daily</span>
+      <div class="vehicle-features-pills" id="fleetPills">
+        <span class="feature-pill">✦ 7-Passenger Layout</span>
+        <span class="feature-pill">✦ Dual-Zone Air Conditioning</span>
+        <span class="feature-pill">✦ Generous Luggage Capacity</span>
+        <span class="feature-pill">✦ USB Device Charging</span>
+        <span class="feature-pill">✦ Cleaned &amp; Sanitized Daily</span>
       </div>
     </div>
 
-    <!-- Main Large Showcase View (Clean - No Labels) -->
+    <!-- Main Large Showcase View -->
     <div class="main-showcase-container">
       <img id="mainVehiclePhoto" src="rumion-front.jpg.jpeg" alt="Toyota Rumion TX">
     </div>
 
-    <!-- Thumbnails matching your exact GitHub files (Clean - No Labels) -->
+    <!-- 4 Vehicle Cards -->
     <div class="gallery-grid">
-      <div class="gallery-thumb-card active" onclick="switchVehiclePhoto('rumion-front.jpg.jpeg', this)">
-        <img src="rumion-front.jpg.jpeg" alt="Toyota Rumion">
+      <!-- Car 1: Rumion -->
+      <div class="gallery-thumb-card active" onclick="selectFleetVehicle('rumion', this)">
+        <img src="rumion-front.jpg.jpeg" alt="Toyota Rumion TX">
+        <div class="thumb-caption">Toyota Rumion TX (7-Seater)</div>
       </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-properside.jpg.jpeg', this)">
-        <img src="rumion-properside.jpg.jpeg" alt="Toyota Rumion">
+
+      <!-- Car 2: Mercedes-Benz CLE 53 -->
+      <div class="gallery-thumb-card" onclick="selectFleetVehicle('cle53', this)">
+        <img src="benz-cle53.jpg" alt="Mercedes-Benz CLE 53 AMG">
+        <div class="thumb-caption">Benz CLE 53 AMG</div>
       </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-side.jpg.jpeg', this)">
-        <img src="rumion-side.jpg.jpeg" alt="Toyota Rumion">
+
+      <!-- Car 3: Mercedes-Benz GLS 63 -->
+      <div class="gallery-thumb-card" onclick="selectFleetVehicle('gls63', this)">
+        <img src="benz-gls63.jpg" alt="Mercedes-Benz GLS 63 AMG">
+        <div class="thumb-caption">Benz GLS 63 AMG</div>
       </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-sidetwo.jpg.jpeg', this)">
-        <img src="rumion-sidetwo.jpg.jpeg" alt="Toyota Rumion">
-      </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-back.jpg.jpeg', this)">
-        <img src="rumion-back.jpg.jpeg" alt="Toyota Rumion">
-      </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-tailgate.jpg.jpeg', this)">
-        <img src="rumion-tailgate.jpg.jpeg" alt="Toyota Rumion">
-      </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-interior.jpg.jpeg', this)">
-        <img src="rumion-interior.jpg.jpeg" alt="Toyota Rumion">
-      </div>
-      <div class="gallery-thumb-card" onclick="switchVehiclePhoto('rumion-interiortwo.jpg.jpeg', this)">
-        <img src="rumion-interiortwo.jpg.jpeg" alt="Toyota Rumion">
+
+      <!-- Car 4: Audi A4 -->
+      <div class="gallery-thumb-card" onclick="selectFleetVehicle('audia4', this)">
+        <img src="audi-a4.jpg" alt="Audi A4 Sedan">
+        <div class="thumb-caption">Audi A4 Executive</div>
       </div>
     </div>
   </section>
@@ -774,7 +836,7 @@
             <li>Historical Simon’s Town & Kalk Bay harbour</li>
           </ul>
         </div>
-        <button class="tour-action-btn" onclick="selectTour('Cape Peninsula & Penguin Tour')">Book This Tour</button>
+        <button class="tour-action-btn" onclick="selectTour('Cape Peninsula & Penguin Tour', 2500)">Book / Pay Deposit (R2,500)</button>
       </div>
 
       <div class="tour-card">
@@ -789,7 +851,7 @@
             <li>Safe, private chauffeur handling all driving & wine transport</li>
           </ul>
         </div>
-        <button class="tour-action-btn" onclick="selectTour('Stellenbosch & Franschhoek Wine Tour')">Book This Tour</button>
+        <button class="tour-action-btn" onclick="selectTour('Stellenbosch & Franschhoek Wine Tour', 2800)">Book / Pay Deposit (R2,800)</button>
       </div>
 
       <div class="tour-card">
@@ -804,7 +866,7 @@
             <li>Signal Hill sunset panorama over the Atlantic Ocean</li>
           </ul>
         </div>
-        <button class="tour-action-btn" onclick="selectTour('Table Mountain & City Tour')">Book This Tour</button>
+        <button class="tour-action-btn" onclick="selectTour('Table Mountain & City Tour', 1500)">Book / Pay Deposit (R1,500)</button>
       </div>
     </div>
   </section>
@@ -820,7 +882,7 @@
       <div class="review-card">
         <div>
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">“Kalenga was an absolute gentleman and the best chauffeur we could have asked for. He picked our family of five up at CPT Airport with all our luggage seamlessly. The Toyota Rumion was spotless and the air conditioning was a lifesaver!”</p>
+          <p class="review-text">“Kalenga was an absolute gentleman and the best chauffeur we could have asked for. He picked our family of five up at CPT Airport with all our luggage seamlessly. The vehicle was spotless and the air conditioning was a lifesaver!”</p>
         </div>
         <div class="reviewer-meta">
           <div class="reviewer-flag">🇬🇧</div>
@@ -869,7 +931,6 @@
     </div>
 
     <div class="team-grid">
-      <!-- Kalenga Omari -->
       <div class="team-card">
         <div class="team-avatar">👨🏾‍✈️</div>
         <h3>Kalenga Omari</h3>
@@ -879,7 +940,6 @@
         <a class="btn-driver-wa" href="https://wa.me/27729216336?text=Hi%20Kalenga,%20I%20would%20like%20to%20inquire%20about%20a%20private%20chauffeur%20booking." target="_blank">WhatsApp Driver Directly</a>
       </div>
 
-      <!-- Mima Omari -->
       <div class="team-card">
         <div class="team-avatar">📋</div>
         <h3>Mima Omari</h3>
@@ -891,17 +951,22 @@
     </div>
   </section>
 
-  <!-- Reservation Section -->
+  <!-- Reservation & Online Card Checkout Section -->
   <section class="booking-section" id="reserve">
     <div class="section-title">
-      <h2>Reserve Vehicle</h2>
-      <p>Book Your Transfer Or Tour</p>
+      <h2>Reserve & Checkout</h2>
+      <p>Instant Online Card Payment Or WhatsApp Confirmation</p>
     </div>
 
-    <form id="bookingForm" onsubmit="handleBooking(event)">
+    <form id="bookingForm" onsubmit="handleFormSubmission(event)">
       <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" id="custName" placeholder="Full Name" required>
+        <label>Your Full Name</label>
+        <input type="text" id="custName" placeholder="e.g. John Smith" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address (For Bank Card Receipt)</label>
+        <input type="email" id="custEmail" placeholder="e.g. john@example.com" required>
       </div>
 
       <div class="form-group">
@@ -920,6 +985,17 @@
         </div>
       </div>
 
+      <!-- Vehicle Choice Selection -->
+      <div class="form-group">
+        <label>Select Preferred Vehicle</label>
+        <select id="bookingVehicle">
+          <option value="Toyota Rumion TX (7-Seater)">Toyota Rumion TX (7-Seater Executive MPV)</option>
+          <option value="Mercedes-Benz CLE 53 AMG">Mercedes-Benz CLE 53 AMG (Executive Coupe)</option>
+          <option value="Mercedes-Benz GLS 63 AMG">Mercedes-Benz GLS 63 AMG (Ultra-Luxury Flagship SUV)</option>
+          <option value="Audi A4 Sedan">Audi A4 Sedan (Executive Business Sedan)</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label>Pickup Location</label>
         <input type="text" id="bookingPickup" placeholder="Start typing address, hotel or airport..." autocomplete="off" required>
@@ -936,7 +1012,29 @@
         <input type="datetime-local" id="bookingDateTime" required>
       </div>
 
-      <button type="submit" class="btn-submit-booking">Reserve Vehicle</button>
+      <!-- Payment Method Selection -->
+      <div class="payment-selection-box">
+        <label>Select How You Wish To Confirm</label>
+        <div class="payment-options-group">
+          <label class="payment-radio-option">
+            <input type="radio" name="paymentMethod" value="card" checked onchange="togglePaymentMode()">
+            <span>💳 Pay Online With Card (Instant Checkout)</span>
+          </label>
+          <label class="payment-radio-option">
+            <input type="radio" name="paymentMethod" value="whatsapp" onchange="togglePaymentMode()">
+            <span>💬 Confirm via WhatsApp (Quote / Cash / EFT)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Amount field shown for card transactions -->
+      <div class="form-group" id="amountFieldWrapper">
+        <label>Amount To Charge (ZAR / Rands)</label>
+        <input type="number" id="payAmount" value="500" min="100" step="50" required>
+        <small style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; display: block;">Standard deposit is R500. You can also pay full tour fares.</small>
+      </div>
+
+      <button type="submit" id="submitActionBtn" class="btn-submit-booking">💳 Proceed to Secure Card Checkout</button>
     </form>
   </section>
 
@@ -945,15 +1043,87 @@
   </footer>
 
   <script>
-    function switchVehiclePhoto(src, cardEl) {
-      document.getElementById('mainVehiclePhoto').src = src;
+    // Paste your live public key here from paystack.com -> Settings -> API Keys & Webhooks
+    const PAYSTACK_PUBLIC_KEY = 'pk_test_sample_key';
+
+    const fleetData = {
+      rumion: {
+        title: "Toyota Rumion TX",
+        category: "Flagship 7-Seater Executive MPV",
+        image: "rumion-front.jpg.jpeg",
+        desc: "The <strong>Toyota Rumion TX</strong> is our premier multi-purpose tour vehicle, designed for visiting families, luggage-heavy airport runs, and full-day peninsula excursions. Spacious, quiet, and equipped with dedicated rear air conditioning for effortless sightseeing across Cape Town.",
+        pills: ["✦ 7-Passenger Layout", "✦ Dual-Zone Air Conditioning", "✦ Generous Luggage Capacity", "✦ USB Device Charging", "✦ Cleaned & Sanitized Daily"]
+      },
+      cle53: {
+        title: "Mercedes-Benz CLE 53 AMG",
+        category: "High-Performance Executive Coupe",
+        image: "benz-cle53.jpg",
+        desc: "The <strong>Mercedes-Benz CLE 53 AMG</strong> offers unmatched style, speed, and aggressive presence across Cape Town's coastal corridors. Ideal for solo executive transfers, couples' VIP evenings, and bespoke luxury drives.",
+        pills: ["✦ VIP Chauffeur Experience", "✦ AMG Performance Styling", "✦ Leather Cabin Interior", "✦ Burmester Sound System", "✦ Unrivaled Road Presence"]
+      },
+      gls63: {
+        title: "Mercedes-Benz GLS 63 AMG",
+        category: "Ultra-Luxury Flagship Performance SUV",
+        image: "benz-gls63.jpg",
+        desc: "The <strong>Mercedes-Benz GLS 63 AMG</strong> represents the pinnacle of executive luxury travel. Combining dominant V8 twin-turbo performance with presidential rear seating, supreme ride height, and ultra-plush cabin refinement.",
+        pills: ["✦ Presidential VIP Class", "✦ Ultra-Spacious Cabin", "✦ First-Class Rear Seating", "✦ Panoramic Sunroof", "✦ Prestige Luxury Chauffeur"]
+      },
+      audia4: {
+        title: "Audi A4 Sedan",
+        category: "Premium Executive Business Sedan",
+        image: "audi-a4.jpg",
+        desc: "The <strong>Audi A4</strong> delivers understated elegance, German precision, and whisper-quiet ride comfort. The go-to choice for corporate business meetings, direct hotel transfers, and effortless city commuting.",
+        pills: ["✦ Business Executive Class", "✦ Acoustic Glazing & Quiet Ride", "✦ Dedicated Climate Control", "✦ Premium Leather Upholstery", "✦ Discreet & Punctual"]
+      }
+    };
+
+    function selectFleetVehicle(vehicleKey, cardEl) {
+      const data = fleetData[vehicleKey];
+      if (!data) return;
+
+      document.getElementById('fleetTitle').innerHTML = data.title;
+      document.getElementById('fleetCategory').innerHTML = data.category;
+      document.getElementById('fleetDescription').innerHTML = data.desc;
+      document.getElementById('mainVehiclePhoto').src = data.image;
+
+      const pillsContainer = document.getElementById('fleetPills');
+      pillsContainer.innerHTML = data.pills.map(p => `<span class="feature-pill">${p}</span>`).join('');
+
       document.querySelectorAll('.gallery-thumb-card').forEach(c => c.classList.remove('active'));
-      if(cardEl) cardEl.classList.add('active');
+      if (cardEl) cardEl.classList.add('active');
+
+      // Auto-sync booking dropdown
+      const selectEl = document.getElementById('bookingVehicle');
+      if (vehicleKey === 'rumion') selectEl.value = 'Toyota Rumion TX (7-Seater)';
+      if (vehicleKey === 'cle53') selectEl.value = 'Mercedes-Benz CLE 53 AMG';
+      if (vehicleKey === 'gls63') selectEl.value = 'Mercedes-Benz GLS 63 AMG';
+      if (vehicleKey === 'audia4') selectEl.value = 'Audi A4 Sedan';
     }
 
-    function selectTour(tourName) {
+    function selectTour(tourName, price) {
       document.getElementById('bookingDropoff').value = tourName;
+      if (price) {
+        document.getElementById('payAmount').value = price;
+      }
       document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function togglePaymentMode() {
+      const mode = document.querySelector('input[name="paymentMethod"]:checked').value;
+      const btn = document.getElementById('submitActionBtn');
+      const amountWrap = document.getElementById('amountFieldWrapper');
+
+      if (mode === 'card') {
+        amountWrap.style.display = 'block';
+        btn.textContent = '💳 Proceed to Secure Card Checkout';
+        btn.style.background = 'linear-gradient(135deg, #D4AF37, #AA820A)';
+        btn.style.color = '#000';
+      } else {
+        amountWrap.style.display = 'none';
+        btn.textContent = '💬 Confirm Reservation on WhatsApp';
+        btn.style.background = '#25D366';
+        btn.style.color = '#fff';
+      }
     }
 
     const ctLocations = [
@@ -1019,24 +1189,66 @@
     setupAutocomplete('topLocationInput', 'topLocationList');
     setupAutocomplete('bookingPickup', 'bookingPickupList');
 
-    function handleBooking(e) {
+    function handleFormSubmission(e) {
       e.preventDefault();
+      const mode = document.querySelector('input[name="paymentMethod"]:checked').value;
+
       const name = document.getElementById('custName').value;
+      const email = document.getElementById('custEmail').value;
       const code = document.getElementById('countryCode').value;
       const phone = document.getElementById('custPhone').value;
+      const vehicle = document.getElementById('bookingVehicle').value;
       const pickup = document.getElementById('bookingPickup').value;
       const dropoff = document.getElementById('bookingDropoff').value;
       const time = document.getElementById('bookingDateTime').value;
+      const amount = document.getElementById('payAmount').value;
 
-      const msg = `*NEW RESERVATION - OMARI TOURS*%0A` +
-                  `*Client:* ${encodeURIComponent(name)}%0A` +
-                  `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
-                  `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                  `*Dropoff / Tour:* ${encodeURIComponent(dropoff)}%0A` +
-                  `*Date/Time:* ${encodeURIComponent(time)}%0A` +
-                  `*Vehicle:* Toyota Rumion TX 7-Seater`;
-
-      window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
+      if (mode === 'card') {
+        let handler = PaystackPop.setup({
+          key: PAYSTACK_PUBLIC_KEY,
+          email: email,
+          amount: Math.round(Number(amount) * 100),
+          currency: 'ZAR',
+          ref: 'OMARI_' + Math.floor((Math.random() * 1000000000) + 1),
+          metadata: {
+            custom_fields: [
+              { display_name: "Customer Name", variable_name: "customer_name", value: name },
+              { display_name: "Phone", variable_name: "phone", value: code + phone },
+              { display_name: "Vehicle", variable_name: "vehicle", value: vehicle },
+              { display_name: "Pickup", variable_name: "pickup", value: pickup },
+              { display_name: "Destination/Tour", variable_name: "dropoff", value: dropoff },
+              { display_name: "Trip Date", variable_name: "trip_date", value: time }
+            ]
+          },
+          callback: function(response) {
+            alert('Payment Successful! Reference: ' + response.reference);
+            const msg = `*PAID RESERVATION - OMARI TOURS*%0A` +
+                        `*Payment Status:* PAID (Ref: ${response.reference})%0A` +
+                        `*Amount:* R${amount}%0A` +
+                        `*Client:* ${encodeURIComponent(name)}%0A` +
+                        `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
+                        `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
+                        `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
+                        `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
+                        `*Date/Time:* ${encodeURIComponent(time)}`;
+            window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
+          },
+          onClose: function() {
+            alert('Checkout was cancelled. Your card was not charged.');
+          }
+        });
+        handler.openIframe();
+      } else {
+        const msg = `*NEW RESERVATION - OMARI TOURS*%0A` +
+                    `*Client:* ${encodeURIComponent(name)}%0A` +
+                    `*Email:* ${encodeURIComponent(email)}%0A` +
+                    `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
+                    `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
+                    `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
+                    `*Dropoff / Tour:* ${encodeURIComponent(dropoff)}%0A` +
+                    `*Date/Time:* ${encodeURIComponent(time)}`;
+        window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
+      }
     }
   </script>
 </body>
