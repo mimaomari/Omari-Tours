@@ -221,7 +221,7 @@
 
     /* Fleet Showcase Section */
     .vehicle-section {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: 30px auto 80px;
       padding: 0 24px;
     }
@@ -300,10 +300,11 @@
       transition: opacity 0.3s ease;
     }
 
+    /* 6 Vehicles Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
     }
 
     .gallery-thumb-card {
@@ -341,9 +342,9 @@
       right: 0;
       background: linear-gradient(180deg, transparent, rgba(9, 11, 14, 0.95));
       color: #fff;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      padding: 10px 8px 6px;
+      padding: 10px 6px 6px;
       text-align: center;
       letter-spacing: 0.3px;
     }
@@ -720,6 +721,9 @@
       .hero {
         padding: 95px 20px 65px;
       }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
     }
   </style>
 </head>
@@ -754,14 +758,14 @@
   <!-- Hero with Table Mountain Sunset Backdrop -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge">Cape Town Chauffeur & Private Tours</div>
+      <div class="hero-badge">Cape Town Chauffeur &amp; Private Tours</div>
       <h1>Explore Cape Town in Complete Comfort</h1>
       <p>Bespoke peninsula tours, wine valley escapes, and executive VIP transfers driven by local professionals across our luxury fleet.</p>
       <a href="#reserve" class="btn-reserve">Reserve Vehicle</a>
     </div>
   </section>
 
-  <!-- Fleet Showcase Section -->
+  <!-- Fleet Showcase Section (6 Vehicles) -->
   <section class="vehicle-section" id="fleet">
     <div class="section-title">
       <h2 id="fleetTitle">Toyota Rumion TX</h2>
@@ -787,12 +791,12 @@
       <img id="mainVehiclePhoto" src="rumion-front.jpg.jpeg" alt="Toyota Rumion TX">
     </div>
 
-    <!-- 4 Vehicle Cards -->
+    <!-- 6 Vehicle Cards -->
     <div class="gallery-grid">
       <!-- Car 1: Rumion -->
       <div class="gallery-thumb-card active" onclick="selectFleetVehicle('rumion', this)">
         <img src="rumion-front.jpg.jpeg" alt="Toyota Rumion TX">
-        <div class="thumb-caption">Toyota Rumion TX (7-Seater)</div>
+        <div class="thumb-caption">Toyota Rumion TX</div>
       </div>
 
       <!-- Car 2: Mercedes-Benz CLE 53 AMG -->
@@ -807,10 +811,22 @@
         <div class="thumb-caption">Benz GLS 63 AMG</div>
       </div>
 
-      <!-- Car 4: Audi A4 Sedan -->
+      <!-- Car 4: Audi A4 Sedan (New Photo) -->
       <div class="gallery-thumb-card" onclick="selectFleetVehicle('audia4', this)">
-        <img src="audi-a4.jpg" alt="Audi A4 Sedan">
-        <div class="thumb-caption">Audi A4 Executive</div>
+        <img src="audi-a4-new.jpg" alt="Audi A4 Sedan">
+        <div class="thumb-caption">Audi A4 Sedan</div>
+      </div>
+
+      <!-- Car 5: Toyota Quantum -->
+      <div class="gallery-thumb-card" onclick="selectFleetVehicle('quantum', this)">
+        <img src="toyota-quantum.jpg" alt="Toyota Quantum Executive">
+        <div class="thumb-caption">Toyota Quantum</div>
+      </div>
+
+      <!-- Car 6: Hyundai Staria -->
+      <div class="gallery-thumb-card" onclick="selectFleetVehicle('staria', this)">
+        <img src="hyundai-staria.jpg" alt="Hyundai Staria Executive">
+        <div class="thumb-caption">Hyundai Staria</div>
       </div>
     </div>
   </section>
@@ -819,20 +835,20 @@
   <section class="tours-section" id="tours">
     <div class="section-title">
       <h2>Cape Town Private Tours</h2>
-      <p>Curated Chauffeur Itineraries & Sightseeing</p>
+      <p>Curated Chauffeur Itineraries &amp; Sightseeing</p>
     </div>
 
     <div class="tours-grid">
       <div class="tour-card">
         <div>
           <span class="tour-badge">Full Day • Most Popular</span>
-          <h3>Cape Peninsula & Penguin Experience</h3>
+          <h3>Cape Peninsula &amp; Penguin Experience</h3>
           <p>The definitive Cape Town day journey. We cruise along the Atlantic Seaboard, navigate Chapman's Peak Drive, visit the penguins, and stand at Africa’s southwesternmost point.</p>
           <ul class="tour-highlights">
-            <li>Camps Bay, Hout Bay & Chapman’s Peak Drive</li>
-            <li>Cape Point Nature Reserve & Cape of Good Hope</li>
+            <li>Camps Bay, Hout Bay &amp; Chapman’s Peak Drive</li>
+            <li>Cape Point Nature Reserve &amp; Cape of Good Hope</li>
             <li>Boulders Beach African Penguin Colony</li>
-            <li>Historical Simon’s Town & Kalk Bay harbour</li>
+            <li>Historical Simon’s Town &amp; Kalk Bay harbour</li>
           </ul>
         </div>
         <button class="tour-action-btn" onclick="selectTour('Cape Peninsula & Penguin Tour', 2500)">Book / Pay Deposit (R2,500)</button>
@@ -840,14 +856,14 @@
 
       <div class="tour-card">
         <div>
-          <span class="tour-badge">Full Day • Scenic & Wine</span>
-          <h3>Stellenbosch & Franschhoek Winelands</h3>
+          <span class="tour-badge">Full Day • Scenic &amp; Wine</span>
+          <h3>Stellenbosch &amp; Franschhoek Winelands</h3>
           <p>Indulge in South Africa’s world-renowned wine valleys without driving worries. Private door-to-door chauffeur service between premier historic estates, cellar doors, and gourmet lunches.</p>
           <ul class="tour-highlights">
-            <li>Historic Stellenbosch town walk & oak-lined streets</li>
-            <li>Franschhoek valley panoramas & monument views</li>
-            <li>Customized stops at boutique & world-class estates</li>
-            <li>Safe, private chauffeur handling all driving & wine transport</li>
+            <li>Historic Stellenbosch town walk &amp; oak-lined streets</li>
+            <li>Franschhoek valley panoramas &amp; monument views</li>
+            <li>Customized stops at boutique &amp; world-class estates</li>
+            <li>Safe, private chauffeur handling all driving &amp; wine transport</li>
           </ul>
         </div>
         <button class="tour-action-btn" onclick="selectTour('Stellenbosch & Franschhoek Wine Tour', 2800)">Book / Pay Deposit (R2,800)</button>
@@ -856,11 +872,11 @@
       <div class="tour-card">
         <div>
           <span class="tour-badge">Half Day / Flexible</span>
-          <h3>Table Mountain & Historic City Loop</h3>
+          <h3>Table Mountain &amp; Historic City Loop</h3>
           <p>Ideal for first-time arrivals. Take in Cape Town’s iconic skyline landmarks, vibrant cultural heritage, and panoramic viewpoints in complete luxury comfort.</p>
           <ul class="tour-highlights">
-            <li>Table Mountain Aerial Cableway drop-off & collection</li>
-            <li>Vibrant Bo-Kaap cobblestone streets & colorful facades</li>
+            <li>Table Mountain Aerial Cableway drop-off &amp; collection</li>
+            <li>Vibrant Bo-Kaap cobblestone streets &amp; colorful facades</li>
             <li>Kirstenbosch National Botanical Gardens</li>
             <li>Signal Hill sunset panorama over the Atlantic Ocean</li>
           </ul>
@@ -886,8 +902,8 @@
         <div class="reviewer-meta">
           <div class="reviewer-flag">🇬🇧</div>
           <div class="reviewer-info">
-            <h4>David & Sarah Jenkins</h4>
-            <span>London, United Kingdom • Airport & City Transfers</span>
+            <h4>David &amp; Sarah Jenkins</h4>
+            <span>London, United Kingdom • Airport &amp; City Transfers</span>
           </div>
         </div>
       </div>
@@ -926,14 +942,14 @@
   <section class="team-section" id="team">
     <div class="section-title">
       <h2>Meet The Team</h2>
-      <p>Direct Support & Chauffeurs</p>
+      <p>Direct Support &amp; Chauffeurs</p>
     </div>
 
     <div class="team-grid">
       <div class="team-card">
         <div class="team-avatar">👨🏾‍✈️</div>
         <h3>Omari</h3>
-        <div class="team-role">Lead Driver & Vehicle Owner</div>
+        <div class="team-role">Lead Driver &amp; Vehicle Owner</div>
         <a class="team-phone" href="tel:+27729216336">072 921 6336</a>
         <a class="team-email" href="mailto:omarikalenga@gmail.com">omarikalenga@gmail.com</a>
         <a class="btn-driver-wa" href="https://wa.me/27729216336?text=Hi%20Omari,%20I%20would%20like%20to%20inquire%20about%20a%20private%20chauffeur%20booking." target="_blank">WhatsApp Driver Directly</a>
@@ -942,7 +958,7 @@
       <div class="team-card">
         <div class="team-avatar">📋</div>
         <h3>Mima Omari</h3>
-        <div class="team-role">Bookings & Logistics Coordinator</div>
+        <div class="team-role">Bookings &amp; Logistics Coordinator</div>
         <a class="team-phone" href="tel:+27682459527">068 245 9527</a>
         <a class="team-email" href="mailto:omarimima123@gmail.com">omarimima123@gmail.com</a>
         <a class="btn-driver-wa" href="https://wa.me/27682459527?text=Hi%20Mima,%20I%20would%20like%20to%20book%20a%20tour%20with%20Omari%20Tours." target="_blank">WhatsApp Bookings</a>
@@ -953,7 +969,7 @@
   <!-- Reservation & Online Checkout Section -->
   <section class="booking-section" id="reserve">
     <div class="section-title">
-      <h2>Reserve & Checkout</h2>
+      <h2>Reserve &amp; Checkout</h2>
       <p>Instant Online Card Payment Powered by Yoco</p>
     </div>
 
@@ -984,7 +1000,7 @@
         </div>
       </div>
 
-      <!-- Preferred Vehicle Dropdown (All 4 Vehicles) -->
+      <!-- Preferred Vehicle Dropdown (All 6 Vehicles) -->
       <div class="form-group">
         <label>Select Preferred Vehicle</label>
         <select id="bookingVehicle">
@@ -992,6 +1008,8 @@
           <option value="Mercedes-Benz CLE 53 AMG">Mercedes-Benz CLE 53 AMG (High-Performance Coupe)</option>
           <option value="Mercedes-Benz GLS 63 AMG">Mercedes-Benz GLS 63 AMG (Ultra-Luxury Flagship SUV)</option>
           <option value="Audi A4 Sedan">Audi A4 Sedan (Premium Business Sedan)</option>
+          <option value="Toyota Quantum Executive">Toyota Quantum Executive (13/14-Passenger Tourer)</option>
+          <option value="Hyundai Staria Executive">Hyundai Staria Executive (Luxury Group MPV)</option>
         </select>
       </div>
 
@@ -1007,11 +1025,11 @@
       </div>
 
       <div class="form-group">
-        <label>Date & Time</label>
+        <label>Date &amp; Time</label>
         <input type="datetime-local" id="bookingDateTime" required>
       </div>
 
-      <!-- Confirmation Method (Card Payment Only) -->
+      <!-- Payment Method -->
       <div class="payment-selection-box">
         <label>Payment Method</label>
         <div>
@@ -1041,16 +1059,16 @@
     </form>
   </section>
 
-  <!-- Footer (Omari) -->
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Omari Tours Cape Town. Lead Driver Omari | Bookings & Logistics Mima Omari.</p>
+    <p>&copy; 2026 Omari Tours Cape Town. Lead Driver Omari | Bookings &amp; Logistics Mima Omari.</p>
   </footer>
 
   <script>
     // Live Yoco Payment Page Link
     const YOCO_PAYMENT_URL = "https://pay.yoco.com/omari-tours";
 
-    // Complete vehicle fleet data
+    // 6-Vehicle Fleet Profiles
     const fleetData = {
       rumion: {
         title: "Toyota Rumion TX",
@@ -1076,9 +1094,23 @@
       audia4: {
         title: "Audi A4 Sedan",
         category: "Premium Executive Business Sedan",
-        image: "audi-a4.jpg",
+        image: "audi-a4-new.jpg",
         desc: "The <strong>Audi A4 Sedan</strong> is the benchmark of understated European elegance, digital precision, and refined urban agility. Perfectly suited for visiting corporate dignitaries, private hotel transfers, and intimate regional charters, its cabin is a masterclass in minimalist German luxury. Equipped with acoustic windscreen insulation, three-zone automatic climate control, and refined leather seating, it glides through Cape Town’s city center and airport routes with discreet elegance, absolute punctuality, and seamless mechanical poise.",
-        pills: ["✦ Business Executive Class", "✦ Acoustic Glazing & Quiet Ride", "✦ Three-Zone Climate Control", "✦ Premium Leather Upholstery", "✦ Discreet & Punctual"]
+        pills: ["✦ Business Executive Class", "✦ Acoustic Glazing &amp; Quiet Ride", "✦ Three-Zone Climate Control", "✦ Premium Leather Upholstery", "✦ Discreet &amp; Punctual"]
+      },
+      quantum: {
+        title: "Toyota Quantum Executive",
+        category: "Spacious Multi-Passenger Tourer &amp; Charter",
+        image: "toyota-quantum.jpg",
+        desc: "The <strong>Toyota Quantum Executive</strong> is the definitive choice for large traveling entourages, corporate delegations, and multi-family private tour groups traversing the Western Cape. Engineered with high-capacity seating for up to 13 to 14 passengers, elevated head clearance, expansive tinted sightseeing windows, and overhead individual ducted air conditioning vents, it handles extended full-day excursions—from Cape Point to the Franschhoek wine valleys—with proven durability, luggage convenience, and uninterrupted group comfort.",
+        pills: ["✦ 13–14 Passenger Group Seating", "✦ Overhead Ducted Air Conditioning", "✦ Deep Luggage Bay Capability", "✦ Panoramic High-Visibility Windows", "✦ Long-Haul Tour Reliability"]
+      },
+      staria: {
+        title: "Hyundai Staria Executive",
+        category: "Futuristic Ultra-Comfort Executive Van",
+        image: "hyundai-staria.jpg",
+        desc: "The <strong>Hyundai Staria Executive Van</strong> redefines luxury group travel with spacecraft-inspired aerodynamics and an ultra-modern business lounge interior. Featuring expansive panoramic side glass, whisper-quiet road insulation, generous multi-tier seating with individual armrests, and multiple high-output USB charging ports for all passengers, it bridges the gap between executive boardroom comfort and versatile tour transport. It delivers an unmistakably contemporary, smooth, and relaxing chauffeured tour experience across Cape Town.",
+        pills: ["✦ Futuristic Lounge Cabin", "✦ Individual Reclining Armchairs", "✦ Deep Panoramic Sightline Windows", "✦ Individual Fast-Charge Ports", "✦ Whisper-Quiet Cabin Isolation"]
       }
     };
 
@@ -1102,6 +1134,8 @@
       if (vehicleKey === 'cle53') selectEl.value = 'Mercedes-Benz CLE 53 AMG';
       if (vehicleKey === 'gls63') selectEl.value = 'Mercedes-Benz GLS 63 AMG';
       if (vehicleKey === 'audia4') selectEl.value = 'Audi A4 Sedan';
+      if (vehicleKey === 'quantum') selectEl.value = 'Toyota Quantum Executive';
+      if (vehicleKey === 'staria') selectEl.value = 'Hyundai Staria Executive';
     }
 
     function selectTour(tourName, priceZAR) {
@@ -1191,7 +1225,7 @@
     setupAutocomplete('topLocationInput', 'topLocationList');
     setupAutocomplete('bookingPickup', 'bookingPickupList');
 
-    // Direct Yoco Checkout Handler (Option 1: No secondary WhatsApp tab)
+    // Direct Yoco Checkout Handler (Option 1: Pre-filled single-window redirect)
     function handleFormSubmission(e) {
       e.preventDefault();
 
@@ -1223,7 +1257,7 @@
       const lastName = encodeURIComponent(nameParts.slice(1).join(" ") || "Client");
       const cleanEmail = encodeURIComponent(email);
 
-      // Direct redirection in current window — no popups or secondary tabs
+      // Direct redirection in current window
       window.location.href = `${YOCO_PAYMENT_URL}?amount=${amountZAR}&reference=${bookingRef}&first_name=${firstName}&last_name=${lastName}&email=${cleanEmail}`;
     }
   </script>
