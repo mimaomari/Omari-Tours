@@ -761,7 +761,7 @@
     </div>
   </section>
 
-  <!-- Fleet Showcase Section (Equal Formatted Headings & Detailed Descriptions) -->
+  <!-- Fleet Showcase Section -->
   <section class="vehicle-section" id="fleet">
     <div class="section-title">
       <h2 id="fleetTitle">Toyota Rumion TX</h2>
@@ -922,7 +922,7 @@
     </div>
   </section>
 
-  <!-- Meet The Team Section (Lead Driver: Omari) -->
+  <!-- Meet The Team Section -->
   <section class="team-section" id="team">
     <div class="section-title">
       <h2>Meet The Team</h2>
@@ -1050,7 +1050,7 @@
     // Live Yoco Payment Page Link
     const YOCO_PAYMENT_URL = "https://pay.yoco.com/omari-tours";
 
-    // Complete, equally-formatted vehicle fleet data
+    // Complete vehicle fleet data
     const fleetData = {
       rumion: {
         title: "Toyota Rumion TX",
@@ -1191,17 +1191,17 @@
     setupAutocomplete('topLocationInput', 'topLocationList');
     setupAutocomplete('bookingPickup', 'bookingPickupList');
 
-    // Direct Yoco Checkout Handler
+    // Direct Yoco Checkout Handler with auto-prefill parameters
     function handleFormSubmission(e) {
       e.preventDefault();
 
-      const name = document.getElementById('custName').value;
-      const email = document.getElementById('custEmail').value;
+      const name = document.getElementById('custName').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
       const code = document.getElementById('countryCode').value;
-      const phone = document.getElementById('custPhone').value;
+      const phone = document.getElementById('custPhone').value.trim();
       const vehicle = document.getElementById('bookingVehicle').value;
-      const pickup = document.getElementById('bookingPickup').value;
-      const dropoff = document.getElementById('bookingDropoff').value;
+      const pickup = document.getElementById('bookingPickup').value.trim();
+      const dropoff = document.getElementById('bookingDropoff').value.trim();
       const time = document.getElementById('bookingDateTime').value;
 
       // Calculate amount in ZAR
@@ -1210,7 +1210,7 @@
       const enteredAmount = parseFloat(document.getElementById('payAmount').value);
       const amountZAR = Math.round(enteredAmount / rate);
 
-      // Generate a unique booking reference
+      // Unique reference for tracking
       const bookingRef = "OMR-" + Math.floor(100000 + Math.random() * 900000);
 
       const submitBtn = document.getElementById('submitActionBtn');
@@ -1231,8 +1231,14 @@
 
       window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
 
-      // 2. Direct browser redirection to the official Yoco card payment portal
-      window.location.href = `${YOCO_PAYMENT_URL}?amount=${amountZAR}&reference=${bookingRef}`;
+      // 2. Parse First and Last name for Yoco auto-fill
+      const nameParts = name.split(" ");
+      const firstName = encodeURIComponent(nameParts[0] || "");
+      const lastName = encodeURIComponent(nameParts.slice(1).join(" ") || "Client");
+      const cleanEmail = encodeURIComponent(email);
+
+      // 3. Direct browser redirection to the official Yoco card portal with details pre-filled
+      window.location.href = `${YOCO_PAYMENT_URL}?amount=${amountZAR}&reference=${bookingRef}&first_name=${firstName}&last_name=${lastName}&email=${cleanEmail}`;
     }
   </script>
 </body>
