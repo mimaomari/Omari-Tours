@@ -513,7 +513,7 @@
       color: var(--text-muted);
     }
 
-    /* Meet The Team Section */
+    /* Meet The Team Section (Lead Driver: Omari) */
     .team-section {
       max-width: 1000px;
       margin: 80px auto;
@@ -1191,7 +1191,7 @@
     setupAutocomplete('topLocationInput', 'topLocationList');
     setupAutocomplete('bookingPickup', 'bookingPickupList');
 
-    // Direct Yoco Checkout Handler with auto-prefill parameters
+    // Direct Yoco Checkout Handler (Option 1: No secondary WhatsApp tab)
     function handleFormSubmission(e) {
       e.preventDefault();
 
@@ -1210,34 +1210,20 @@
       const enteredAmount = parseFloat(document.getElementById('payAmount').value);
       const amountZAR = Math.round(enteredAmount / rate);
 
-      // Unique reference for tracking
+      // Generate a unique booking reference
       const bookingRef = "OMR-" + Math.floor(100000 + Math.random() * 900000);
 
       const submitBtn = document.getElementById('submitActionBtn');
       submitBtn.textContent = 'Redirecting to Secure Yoco Checkout...';
       submitBtn.disabled = true;
 
-      // 1. Send reservation details to WhatsApp in a background tab
-      const msg = `*NEW BOOKING (PAYING VIA YOCO)*%0A` +
-                  `*Booking Ref:* ${bookingRef}%0A` +
-                  `*Client:* ${encodeURIComponent(name)}%0A` +
-                  `*Email:* ${encodeURIComponent(email)}%0A` +
-                  `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
-                  `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
-                  `*Amount:* R${amountZAR} ZAR%0A` +
-                  `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                  `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
-                  `*Date/Time:* ${encodeURIComponent(time)}`;
-
-      window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
-
-      // 2. Parse First and Last name for Yoco auto-fill
+      // Parse First and Last name for Yoco auto-fill
       const nameParts = name.split(" ");
       const firstName = encodeURIComponent(nameParts[0] || "");
       const lastName = encodeURIComponent(nameParts.slice(1).join(" ") || "Client");
       const cleanEmail = encodeURIComponent(email);
 
-      // 3. Direct browser redirection to the official Yoco card portal with details pre-filled
+      // Direct redirection in current window — no popups or secondary tabs
       window.location.href = `${YOCO_PAYMENT_URL}?amount=${amountZAR}&reference=${bookingRef}&first_name=${firstName}&last_name=${lastName}&email=${cleanEmail}`;
     }
   </script>
