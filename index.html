@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- Online Payment Gateway SDK (Paystack) -->
-  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <!-- Yoco Web SDK for Online Card Payments -->
+  <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
 
   <style>
     :root {
@@ -595,7 +595,7 @@
       font-size: 0.9rem;
     }
 
-    /* Booking & Online Checkout Section */
+    /* Booking & Online Card Checkout Section */
     .booking-section {
       max-width: 800px;
       margin: 80px auto;
@@ -951,7 +951,7 @@
     </div>
   </section>
 
-  <!-- Reservation & Online Card Checkout Section -->
+  <!-- Reservation & Yoco Online Card Checkout Section -->
   <section class="booking-section" id="reserve">
     <div class="section-title">
       <h2>Reserve & Checkout</h2>
@@ -965,7 +965,7 @@
       </div>
 
       <div class="form-group">
-        <label>Email Address (For Bank Card Receipt)</label>
+        <label>Email Address (For Yoco Card Receipt)</label>
         <input type="email" id="custEmail" placeholder="e.g. john@example.com" required>
       </div>
 
@@ -1018,7 +1018,7 @@
         <div class="payment-options-group">
           <label class="payment-radio-option">
             <input type="radio" name="paymentMethod" value="card" checked onchange="togglePaymentMode()">
-            <span>💳 Pay Online With Card (Instant Checkout)</span>
+            <span>💳 Pay Online With Card (Yoco Checkout)</span>
           </label>
           <label class="payment-radio-option">
             <input type="radio" name="paymentMethod" value="whatsapp" onchange="togglePaymentMode()">
@@ -1034,7 +1034,7 @@
         <small style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; display: block;">Standard deposit is R500. You can also pay full tour fares.</small>
       </div>
 
-      <button type="submit" id="submitActionBtn" class="btn-submit-booking">💳 Proceed to Secure Card Checkout</button>
+      <button type="submit" id="submitActionBtn" class="btn-submit-booking">💳 Proceed to Yoco Secure Checkout</button>
     </form>
   </section>
 
@@ -1043,8 +1043,13 @@
   </footer>
 
   <script>
-    // Paste your live public key here from paystack.com -> Settings -> API Keys & Webhooks
-    const PAYSTACK_PUBLIC_KEY = 'pk_test_sample_key';
+    // Live Yoco Public Key embedded
+    const YOCO_PUBLIC_KEY = 'pk_live_ad2c4440R4DERjya9264';
+
+    // Initialize Yoco Web SDK
+    const yoco = new window.YocoSDK({
+      publicKey: YOCO_PUBLIC_KEY
+    });
 
     const fleetData = {
       rumion: {
@@ -1092,7 +1097,6 @@
       document.querySelectorAll('.gallery-thumb-card').forEach(c => c.classList.remove('active'));
       if (cardEl) cardEl.classList.add('active');
 
-      // Auto-sync booking dropdown
       const selectEl = document.getElementById('bookingVehicle');
       if (vehicleKey === 'rumion') selectEl.value = 'Toyota Rumion TX (7-Seater)';
       if (vehicleKey === 'cle53') selectEl.value = 'Mercedes-Benz CLE 53 AMG';
@@ -1115,7 +1119,7 @@
 
       if (mode === 'card') {
         amountWrap.style.display = 'block';
-        btn.textContent = '💳 Proceed to Secure Card Checkout';
+        btn.textContent = '💳 Proceed to Yoco Secure Checkout';
         btn.style.background = 'linear-gradient(135deg, #D4AF37, #AA820A)';
         btn.style.color = '#000';
       } else {
@@ -1204,41 +1208,40 @@
       const amount = document.getElementById('payAmount').value;
 
       if (mode === 'card') {
-        let handler = PaystackPop.setup({
-          key: PAYSTACK_PUBLIC_KEY,
-          email: email,
-          amount: Math.round(Number(amount) * 100),
+        // Trigger Yoco Hosted Popup
+        yoco.showPopup({
+          amountInCents: Math.round(Number(amount) * 100),
           currency: 'ZAR',
-          ref: 'OMARI_' + Math.floor((Math.random() * 1000000000) + 1),
-          metadata: {
-            custom_fields: [
-              { display_name: "Customer Name", variable_name: "customer_name", value: name },
-              { display_name: "Phone", variable_name: "phone", value: code + phone },
-              { display_name: "Vehicle", variable_name: "vehicle", value: vehicle },
-              { display_name: "Pickup", variable_name: "pickup", value: pickup },
-              { display_name: "Destination/Tour", variable_name: "dropoff", value: dropoff },
-              { display_name: "Trip Date", variable_name: "trip_date", value: time }
-            ]
+          name: 'Omari Tours Cape Town',
+          description: `Chauffeur Booking (${vehicle})`,
+          customer: {
+            name: name,
+            email: email,
+            phone: code + phone
           },
-          callback: function(response) {
-            alert('Payment Successful! Reference: ' + response.reference);
-            const msg = `*PAID RESERVATION - OMARI TOURS*%0A` +
-                        `*Payment Status:* PAID (Ref: ${response.reference})%0A` +
-                        `*Amount:* R${amount}%0A` +
-                        `*Client:* ${encodeURIComponent(name)}%0A` +
-                        `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
-                        `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
-                        `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                        `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
-                        `*Date/Time:* ${encodeURIComponent(time)}`;
-            window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
-          },
-          onClose: function() {
-            alert('Checkout was cancelled. Your card was not charged.');
+          callback: function (result) {
+            if (result.error) {
+              const errorMessage = result.error.message;
+              alert("Payment error: " + errorMessage);
+            } else {
+              // Yoco Payment Cleared!
+              alert("Payment Successful! Yoco Token: " + result.id);
+              const msg = `*PAID RESERVATION - OMARI TOURS*%0A` +
+                          `*Payment Status:* PAID VIA YOCO (Ref: ${result.id})%0A` +
+                          `*Amount:* R${amount}%0A` +
+                          `*Client:* ${encodeURIComponent(name)}%0A` +
+                          `*Email:* ${encodeURIComponent(email)}%0A` +
+                          `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
+                          `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
+                          `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
+                          `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
+                          `*Date/Time:* ${encodeURIComponent(time)}`;
+              window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
+            }
           }
         });
-        handler.openIframe();
       } else {
+        // Standard WhatsApp Route
         const msg = `*NEW RESERVATION - OMARI TOURS*%0A` +
                     `*Client:* ${encodeURIComponent(name)}%0A` +
                     `*Email:* ${encodeURIComponent(email)}%0A` +
