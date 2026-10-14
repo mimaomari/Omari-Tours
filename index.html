@@ -7,9 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Yoco Web SDK -->
-  <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
 
   <style>
     :root {
@@ -516,7 +513,7 @@
       color: var(--text-muted);
     }
 
-    /* Team Section */
+    /* Meet The Team Section */
     .team-section {
       max-width: 1000px;
       margin: 80px auto;
@@ -1050,20 +1047,8 @@
   </footer>
 
   <script>
-    // Live Yoco Public Key
-    const YOCO_PUBLIC_KEY = 'pk_live_ad2c4440R4DERjya9264';
-
-    // Initialize Yoco Web SDK
-    let yocoInstance = null;
-    try {
-      if (window.YocoSDK) {
-        yocoInstance = new window.YocoSDK({
-          publicKey: YOCO_PUBLIC_KEY
-        });
-      }
-    } catch (err) {
-      console.warn("Yoco SDK initialization waiting for user interaction:", err);
-    }
+    // Live Yoco Payment Page Link
+    const YOCO_PAYMENT_URL = "https://pay.yoco.com/omari-tours";
 
     // Complete, equally-formatted vehicle fleet data
     const fleetData = {
@@ -1072,7 +1057,7 @@
         category: "Flagship 7-Seater Executive MPV",
         image: "rumion-front.jpg.jpeg",
         desc: "The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, visiting families, and group excursions. Combining modern Japanese engineering with generous 7-passenger capability, it features dedicated rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s coastal passes and city boulevards. Whether configured as an expansive sightseeing tourer or flat-folded to accommodate full airport luggage sets, it ensures every peninsula journey is tranquil, safe, and distinctly first-class.",
-        pills: ["✦ 7-Passenger Layout", "✦ Dual-Zone Air Conditioning", "✦ Generous Airport Luggage Bay", "✦ USB Device Charging", "✦ Cleaned & Sanitized Daily"]
+        pills: ["✦ 7-Passenger Layout", "✦ Dual-Zone Air Conditioning", "✦ Generous Airport Luggage Bay", "✦ USB Device Charging", "✦ Cleaned &amp; Sanitized Daily"]
       },
       cle53: {
         title: "Mercedes-Benz CLE 53 AMG",
@@ -1206,7 +1191,7 @@
     setupAutocomplete('topLocationInput', 'topLocationList');
     setupAutocomplete('bookingPickup', 'bookingPickupList');
 
-    // Robust Checkout Handler
+    // Direct Yoco Checkout Handler
     function handleFormSubmission(e) {
       e.preventDefault();
 
@@ -1219,72 +1204,35 @@
       const dropoff = document.getElementById('bookingDropoff').value;
       const time = document.getElementById('bookingDateTime').value;
 
-      // Calculate amount in ZAR cents for Yoco
+      // Calculate amount in ZAR
       const currencySelect = document.getElementById('bookingCurrency');
       const rate = parseFloat(currencySelect.options[currencySelect.selectedIndex].getAttribute('data-rate'));
       const enteredAmount = parseFloat(document.getElementById('payAmount').value);
       const amountZAR = Math.round(enteredAmount / rate);
-      const amountInCents = amountZAR * 100;
+
+      // Generate a unique booking reference
+      const bookingRef = "OMR-" + Math.floor(100000 + Math.random() * 900000);
 
       const submitBtn = document.getElementById('submitActionBtn');
-      submitBtn.textContent = 'Opening Secure Checkout...';
+      submitBtn.textContent = 'Redirecting to Secure Yoco Checkout...';
       submitBtn.disabled = true;
 
-      // Lazy re-instantiate if needed
-      if (!yocoInstance && window.YocoSDK) {
-        yocoInstance = new window.YocoSDK({ publicKey: YOCO_PUBLIC_KEY });
-      }
+      // 1. Send reservation details to WhatsApp in a background tab
+      const msg = `*NEW BOOKING (PAYING VIA YOCO)*%0A` +
+                  `*Booking Ref:* ${bookingRef}%0A` +
+                  `*Client:* ${encodeURIComponent(name)}%0A` +
+                  `*Email:* ${encodeURIComponent(email)}%0A` +
+                  `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
+                  `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
+                  `*Amount:* R${amountZAR} ZAR%0A` +
+                  `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
+                  `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
+                  `*Date/Time:* ${encodeURIComponent(time)}`;
 
-      if (yocoInstance && typeof yocoInstance.showPopup === 'function') {
-        yocoInstance.showPopup({
-          amountInCents: amountInCents,
-          currency: 'ZAR',
-          name: 'Omari Tours Cape Town',
-          description: `Chauffeur Transfer (${vehicle})`,
-          customer: {
-            name: name,
-            email: email,
-            phone: code + phone
-          },
-          callback: function (result) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = '💳 Proceed to Checkout';
+      window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
 
-            if (result.error) {
-              alert("Payment notice: " + result.error.message);
-            } else {
-              alert("Payment Successful! Reference ID: " + result.id);
-              const msg = `*CONFIRMED CARD RESERVATION - OMARI TOURS*%0A` +
-                          `*Payment Status:* PAID VIA YOCO (Ref: ${result.id})%0A` +
-                          `*Amount Charged:* R${amountZAR} ZAR%0A` +
-                          `*Client:* ${encodeURIComponent(name)}%0A` +
-                          `*Email:* ${encodeURIComponent(email)}%0A` +
-                          `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
-                          `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
-                          `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                          `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
-                          `*Date/Time:* ${encodeURIComponent(time)}`;
-              window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
-            }
-          }
-        });
-      } else {
-        submitBtn.disabled = false;
-        submitBtn.textContent = '💳 Proceed to Checkout';
-        
-        // Direct Fallback to ensure seamless booking
-        alert("Redirecting to Omari Tours dispatch to finalize your card payment...");
-        const msg = `*NEW RESERVATION (CARD PAYMENT REQUEST) - OMARI TOURS*%0A` +
-                    `*Client:* ${encodeURIComponent(name)}%0A` +
-                    `*Email:* ${encodeURIComponent(email)}%0A` +
-                    `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
-                    `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
-                    `*Amount:* R${amountZAR} ZAR%0A` +
-                    `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                    `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
-                    `*Date/Time:* ${encodeURIComponent(time)}`;
-        window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
-      }
+      // 2. Direct browser redirection to the official Yoco card payment portal
+      window.location.href = `${YOCO_PAYMENT_URL}?amount=${amountZAR}&reference=${bookingRef}`;
     }
   </script>
 </body>
