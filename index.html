@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- Yoco Web SDK for Online Card Payments -->
+  <!-- Yoco Web SDK -->
   <script src="https://js.yoco.com/sdk/v1/yoco-sdk-web.js"></script>
 
   <style>
@@ -170,7 +170,7 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
     }
 
-    /* Hero with Table Mountain Sunset Backdrop */
+    /* Hero */
     .hero {
       position: relative;
       padding: 135px 24px 110px;
@@ -222,7 +222,7 @@
       text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
     }
 
-    /* Fleet Showcase */
+    /* Fleet Showcase Section */
     .vehicle-section {
       max-width: 1100px;
       margin: 30px auto 80px;
@@ -595,7 +595,7 @@
       font-size: 0.9rem;
     }
 
-    /* Booking & Online Card Checkout Section */
+    /* Booking & Yoco Card Checkout Section */
     .booking-section {
       max-width: 800px;
       margin: 80px auto;
@@ -644,6 +644,21 @@
       flex-shrink: 0;
     }
 
+    /* Currency & Amount Split Row */
+    .currency-amount-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .currency-amount-row select {
+      width: 140px;
+      flex-shrink: 0;
+    }
+
+    .currency-amount-row input {
+      flex: 1;
+    }
+
     .payment-selection-box {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(212, 175, 55, 0.2);
@@ -654,33 +669,20 @@
 
     .payment-selection-box label {
       color: var(--gold-light);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
-    .payment-options-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .payment-radio-option {
-      flex: 1;
-      min-width: 200px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 12px 16px;
-      border-radius: 8px;
-      display: flex;
+    .payment-badge-single {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      cursor: pointer;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      padding: 8px 16px;
+      border-radius: 6px;
       font-size: 0.9rem;
-    }
-
-    .payment-radio-option input[type="radio"] {
-      accent-color: var(--gold);
-      width: 18px;
-      height: 18px;
+      color: var(--gold-light);
+      font-weight: 500;
     }
 
     .btn-submit-booking {
@@ -762,7 +764,7 @@
     </div>
   </section>
 
-  <!-- Fleet Showcase Section (4 Luxury Vehicles) -->
+  <!-- Fleet Showcase Section (Equal Formatted Headings & Detailed Descriptions) -->
   <section class="vehicle-section" id="fleet">
     <div class="section-title">
       <h2 id="fleetTitle">Toyota Rumion TX</h2>
@@ -772,12 +774,12 @@
     <!-- Dynamic Fleet Description Card -->
     <div class="vehicle-description-card">
       <p id="fleetDescription">
-        The <strong>Toyota Rumion TX</strong> is our premier multi-purpose tour vehicle, designed for visiting families, luggage-heavy airport runs, and full-day peninsula excursions. Spacious, quiet, and equipped with dedicated rear air conditioning for effortless sightseeing across Cape Town.
+        The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, visiting families, and group excursions. Combining modern Japanese engineering with generous 7-passenger capability, it features dedicated rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s coastal passes and city boulevards. Whether configured as an expansive sightseeing tourer or flat-folded to accommodate full airport luggage sets, it ensures every peninsula journey is tranquil, safe, and distinctly first-class.
       </p>
       <div class="vehicle-features-pills" id="fleetPills">
         <span class="feature-pill">✦ 7-Passenger Layout</span>
         <span class="feature-pill">✦ Dual-Zone Air Conditioning</span>
-        <span class="feature-pill">✦ Generous Luggage Capacity</span>
+        <span class="feature-pill">✦ Generous Airport Luggage Bay</span>
         <span class="feature-pill">✦ USB Device Charging</span>
         <span class="feature-pill">✦ Cleaned &amp; Sanitized Daily</span>
       </div>
@@ -796,19 +798,19 @@
         <div class="thumb-caption">Toyota Rumion TX (7-Seater)</div>
       </div>
 
-      <!-- Car 2: Mercedes-Benz CLE 53 -->
+      <!-- Car 2: Mercedes-Benz CLE 53 AMG -->
       <div class="gallery-thumb-card" onclick="selectFleetVehicle('cle53', this)">
         <img src="benz-cle53.jpg" alt="Mercedes-Benz CLE 53 AMG">
         <div class="thumb-caption">Benz CLE 53 AMG</div>
       </div>
 
-      <!-- Car 3: Mercedes-Benz GLS 63 -->
+      <!-- Car 3: Mercedes-Benz GLS 63 AMG -->
       <div class="gallery-thumb-card" onclick="selectFleetVehicle('gls63', this)">
         <img src="benz-gls63.jpg" alt="Mercedes-Benz GLS 63 AMG">
         <div class="thumb-caption">Benz GLS 63 AMG</div>
       </div>
 
-      <!-- Car 4: Audi A4 -->
+      <!-- Car 4: Audi A4 Sedan -->
       <div class="gallery-thumb-card" onclick="selectFleetVehicle('audia4', this)">
         <img src="audi-a4.jpg" alt="Audi A4 Sedan">
         <div class="thumb-caption">Audi A4 Executive</div>
@@ -882,7 +884,7 @@
       <div class="review-card">
         <div>
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">“Kalenga was an absolute gentleman and the best chauffeur we could have asked for. He picked our family of five up at CPT Airport with all our luggage seamlessly. The vehicle was spotless and the air conditioning was a lifesaver!”</p>
+          <p class="review-text">“Omari was an absolute gentleman and the best chauffeur we could have asked for. He picked our family of five up at CPT Airport with all our luggage seamlessly. The vehicle was spotless and the air conditioning was a lifesaver!”</p>
         </div>
         <div class="reviewer-meta">
           <div class="reviewer-flag">🇬🇧</div>
@@ -896,7 +898,7 @@
       <div class="review-card">
         <div>
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">“We booked a full-day Cape Peninsula tour down to Boulders Beach and Cape Point. Booking through Mima was fast and effortless on WhatsApp. Kalenga knew all the best viewpoints without getting stuck in tour-bus crowds. 10/10 experience!”</p>
+          <p class="review-text">“We booked a full-day Cape Peninsula tour down to Boulders Beach and Cape Point. Booking through Mima was fast and effortless on WhatsApp. Omari knew all the best viewpoints without getting stuck in tour-bus crowds. 10/10 experience!”</p>
         </div>
         <div class="reviewer-meta">
           <div class="reviewer-flag">🇩🇪</div>
@@ -923,7 +925,7 @@
     </div>
   </section>
 
-  <!-- Meet The Team Section -->
+  <!-- Meet The Team Section (Lead Driver: Omari) -->
   <section class="team-section" id="team">
     <div class="section-title">
       <h2>Meet The Team</h2>
@@ -933,11 +935,11 @@
     <div class="team-grid">
       <div class="team-card">
         <div class="team-avatar">👨🏾‍✈️</div>
-        <h3>Kalenga Omari</h3>
+        <h3>Omari</h3>
         <div class="team-role">Lead Driver & Vehicle Owner</div>
         <a class="team-phone" href="tel:+27729216336">072 921 6336</a>
         <a class="team-email" href="mailto:omarikalenga@gmail.com">omarikalenga@gmail.com</a>
-        <a class="btn-driver-wa" href="https://wa.me/27729216336?text=Hi%20Kalenga,%20I%20would%20like%20to%20inquire%20about%20a%20private%20chauffeur%20booking." target="_blank">WhatsApp Driver Directly</a>
+        <a class="btn-driver-wa" href="https://wa.me/27729216336?text=Hi%20Omari,%20I%20would%20like%20to%20inquire%20about%20a%20private%20chauffeur%20booking." target="_blank">WhatsApp Driver Directly</a>
       </div>
 
       <div class="team-card">
@@ -951,11 +953,11 @@
     </div>
   </section>
 
-  <!-- Reservation & Yoco Online Card Checkout Section -->
+  <!-- Reservation & Online Checkout Section -->
   <section class="booking-section" id="reserve">
     <div class="section-title">
       <h2>Reserve & Checkout</h2>
-      <p>Instant Online Card Payment Or WhatsApp Confirmation</p>
+      <p>Instant Online Card Payment Powered by Yoco</p>
     </div>
 
     <form id="bookingForm" onsubmit="handleFormSubmission(event)">
@@ -965,7 +967,7 @@
       </div>
 
       <div class="form-group">
-        <label>Email Address (For Yoco Card Receipt)</label>
+        <label>Email Address (For Card Receipt)</label>
         <input type="email" id="custEmail" placeholder="e.g. john@example.com" required>
       </div>
 
@@ -985,14 +987,14 @@
         </div>
       </div>
 
-      <!-- Vehicle Choice Selection -->
+      <!-- Preferred Vehicle Dropdown (All 4 Vehicles) -->
       <div class="form-group">
         <label>Select Preferred Vehicle</label>
         <select id="bookingVehicle">
           <option value="Toyota Rumion TX (7-Seater)">Toyota Rumion TX (7-Seater Executive MPV)</option>
-          <option value="Mercedes-Benz CLE 53 AMG">Mercedes-Benz CLE 53 AMG (Executive Coupe)</option>
+          <option value="Mercedes-Benz CLE 53 AMG">Mercedes-Benz CLE 53 AMG (High-Performance Coupe)</option>
           <option value="Mercedes-Benz GLS 63 AMG">Mercedes-Benz GLS 63 AMG (Ultra-Luxury Flagship SUV)</option>
-          <option value="Audi A4 Sedan">Audi A4 Sedan (Executive Business Sedan)</option>
+          <option value="Audi A4 Sedan">Audi A4 Sedan (Premium Business Sedan)</option>
         </select>
       </div>
 
@@ -1012,73 +1014,86 @@
         <input type="datetime-local" id="bookingDateTime" required>
       </div>
 
-      <!-- Payment Method Selection -->
+      <!-- Confirmation Method (Card Payment Only) -->
       <div class="payment-selection-box">
-        <label>Select How You Wish To Confirm</label>
-        <div class="payment-options-group">
-          <label class="payment-radio-option">
-            <input type="radio" name="paymentMethod" value="card" checked onchange="togglePaymentMode()">
-            <span>💳 Pay Online With Card (Yoco Checkout)</span>
-          </label>
-          <label class="payment-radio-option">
-            <input type="radio" name="paymentMethod" value="whatsapp" onchange="togglePaymentMode()">
-            <span>💬 Confirm via WhatsApp (Quote / Cash / EFT)</span>
-          </label>
+        <label>Payment Method</label>
+        <div>
+          <span class="payment-badge-single">💳 Pay Online With Card (Instant 3D-Secure Checkout)</span>
         </div>
       </div>
 
-      <!-- Amount field shown for card transactions -->
-      <div class="form-group" id="amountFieldWrapper">
-        <label>Amount To Charge (ZAR / Rands)</label>
-        <input type="number" id="payAmount" value="500" min="100" step="50" required>
-        <small style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; display: block;">Standard deposit is R500. You can also pay full tour fares.</small>
+      <!-- Amount & Currency Dropdown Row -->
+      <div class="form-group">
+        <label>Amount To Charge</label>
+        <div class="currency-amount-row">
+          <select id="bookingCurrency" onchange="convertCurrencyDisplay()">
+            <option value="ZAR" data-rate="1" selected>🇿🇦 ZAR (R)</option>
+            <option value="USD" data-rate="0.055">🇺🇸 USD ($)</option>
+            <option value="EUR" data-rate="0.051">🇪🇺 EUR (€)</option>
+            <option value="GBP" data-rate="0.043">🇬🇧 GBP (£)</option>
+            <option value="AUD" data-rate="0.084">🇦🇺 AUD (A$)</option>
+          </select>
+          <input type="number" id="payAmount" value="500" min="50" step="10" required>
+        </div>
+        <small id="currencyNote" style="color: var(--gold-light); font-size: 0.82rem; margin-top: 6px; display: block;">
+          Base fare: R500 ZAR. Billed directly in ZAR by Yoco with automatic bank conversion.
+        </small>
       </div>
 
-      <button type="submit" id="submitActionBtn" class="btn-submit-booking">💳 Proceed to Yoco Secure Checkout</button>
+      <button type="submit" id="submitActionBtn" class="btn-submit-booking">💳 Proceed to Checkout</button>
     </form>
   </section>
 
+  <!-- Footer (Omari) -->
   <footer>
-    <p>&copy; 2026 Omari Tours Cape Town. Lead Driver Kalenga Omari | Bookings & Logistics Mima Omari.</p>
+    <p>&copy; 2026 Omari Tours Cape Town. Lead Driver Omari | Bookings & Logistics Mima Omari.</p>
   </footer>
 
   <script>
-    // Live Yoco Public Key embedded
+    // Live Yoco Public Key
     const YOCO_PUBLIC_KEY = 'pk_live_ad2c4440R4DERjya9264';
 
     // Initialize Yoco Web SDK
-    const yoco = new window.YocoSDK({
-      publicKey: YOCO_PUBLIC_KEY
-    });
+    let yocoInstance = null;
+    try {
+      if (window.YocoSDK) {
+        yocoInstance = new window.YocoSDK({
+          publicKey: YOCO_PUBLIC_KEY
+        });
+      }
+    } catch (err) {
+      console.warn("Yoco SDK initialization waiting for user interaction:", err);
+    }
 
+    // Complete, equally-formatted vehicle fleet data
     const fleetData = {
       rumion: {
         title: "Toyota Rumion TX",
         category: "Flagship 7-Seater Executive MPV",
         image: "rumion-front.jpg.jpeg",
-        desc: "The <strong>Toyota Rumion TX</strong> is our premier multi-purpose tour vehicle, designed for visiting families, luggage-heavy airport runs, and full-day peninsula excursions. Spacious, quiet, and equipped with dedicated rear air conditioning for effortless sightseeing across Cape Town.",
-        pills: ["✦ 7-Passenger Layout", "✦ Dual-Zone Air Conditioning", "✦ Generous Luggage Capacity", "✦ USB Device Charging", "✦ Cleaned & Sanitized Daily"]
+        desc: "The <strong>Toyota Rumion TX</strong> is our flagship executive multi-purpose vehicle, purpose-built for discerning international tourists, visiting families, and group excursions. Combining modern Japanese engineering with generous 7-passenger capability, it features dedicated rear-zone climate control, plush ergonomic seating, elevated scenic windows, and a quiet, insulated cabin that glides effortlessly across Cape Town’s coastal passes and city boulevards. Whether configured as an expansive sightseeing tourer or flat-folded to accommodate full airport luggage sets, it ensures every peninsula journey is tranquil, safe, and distinctly first-class.",
+        pills: ["✦ 7-Passenger Layout", "✦ Dual-Zone Air Conditioning", "✦ Generous Airport Luggage Bay", "✦ USB Device Charging", "✦ Cleaned & Sanitized Daily"]
       },
       cle53: {
         title: "Mercedes-Benz CLE 53 AMG",
         category: "High-Performance Executive Coupe",
         image: "benz-cle53.jpg",
-        desc: "The <strong>Mercedes-Benz CLE 53 AMG</strong> offers unmatched style, speed, and aggressive presence across Cape Town's coastal corridors. Ideal for solo executive transfers, couples' VIP evenings, and bespoke luxury drives.",
-        pills: ["✦ VIP Chauffeur Experience", "✦ AMG Performance Styling", "✦ Leather Cabin Interior", "✦ Burmester Sound System", "✦ Unrivaled Road Presence"]
+        desc: "The <strong>Mercedes-Benz CLE 53 AMG</strong> is our premier high-performance executive grand tourer, designed for executives, VIP couples, and travelers demanding supreme road presence. Powered by an electrified AMG twin-scroll powerplant and finished with bespoke Nappa leather appointments, it commands Cape Town’s Chapman's Peak and Atlantic Seaboard corridors with exhilarating poise. Featuring advanced adaptive acoustic dampening, a signature Burmester surround sound system, and sculpted sport ergonomics, it delivers an uncompromising statement of modern luxury, athletic prestige, and private chauffeur exclusivity.",
+        pills: ["✦ AMG Performance Styling", "✦ Hand-Stitched Leather Cabin", "✦ Burmester 3D Surround Audio", "✦ Intimate VIP Chauffeur Class", "✦ Dynamic Coastal Touring"]
       },
       gls63: {
         title: "Mercedes-Benz GLS 63 AMG",
         category: "Ultra-Luxury Flagship Performance SUV",
         image: "benz-gls63.jpg",
-        desc: "The <strong>Mercedes-Benz GLS 63 AMG</strong> represents the pinnacle of executive luxury travel. Combining dominant V8 twin-turbo performance with presidential rear seating, supreme ride height, and ultra-plush cabin refinement.",
-        pills: ["✦ Presidential VIP Class", "✦ Ultra-Spacious Cabin", "✦ First-Class Rear Seating", "✦ Panoramic Sunroof", "✦ Prestige Luxury Chauffeur"]
+        desc: "The <strong>Mercedes-Benz GLS 63 AMG</strong> represents the undisputed apex of high-luxury chauffeur transportation across Southern Africa. Combining handcrafted twin-turbocharged V8 mastery with presidential three-row space, it offers elevated panoramic viewpoints over Table Mountain and the Winelands from an opulent, whisper-quiet sanctuary. Outfitted with climate-controlled executive seating, dual panoramic glass roofs, active air suspension, and uncompromising privacy features, it provides dignitary-level security, supreme comfort, and unmatched status for discerning VIP clientele.",
+        pills: ["✦ Presidential VIP Class", "✦ Ultra-Spacious Cabin Volume", "✦ Active Air Suspension Ride", "✦ Dual Panoramic Glass Roofs", "✦ First-Class Rear Lounge"]
       },
       audia4: {
         title: "Audi A4 Sedan",
         category: "Premium Executive Business Sedan",
         image: "audi-a4.jpg",
-        desc: "The <strong>Audi A4</strong> delivers understated elegance, German precision, and whisper-quiet ride comfort. The go-to choice for corporate business meetings, direct hotel transfers, and effortless city commuting.",
-        pills: ["✦ Business Executive Class", "✦ Acoustic Glazing & Quiet Ride", "✦ Dedicated Climate Control", "✦ Premium Leather Upholstery", "✦ Discreet & Punctual"]
+        desc: "The <strong>Audi A4 Sedan</strong> is the benchmark of understated European elegance, digital precision, and refined urban agility. Perfectly suited for visiting corporate dignitaries, private hotel transfers, and intimate regional charters, its cabin is a masterclass in minimalist German luxury. Equipped with acoustic windscreen insulation, three-zone automatic climate control, and refined leather seating, it glides through Cape Town’s city center and airport routes with discreet elegance, absolute punctuality, and seamless mechanical poise.",
+        pills: ["✦ Business Executive Class", "✦ Acoustic Glazing & Quiet Ride", "✦ Three-Zone Climate Control", "✦ Premium Leather Upholstery", "✦ Discreet & Punctual"]
       }
     };
 
@@ -1104,29 +1119,27 @@
       if (vehicleKey === 'audia4') selectEl.value = 'Audi A4 Sedan';
     }
 
-    function selectTour(tourName, price) {
+    function selectTour(tourName, priceZAR) {
       document.getElementById('bookingDropoff').value = tourName;
-      if (price) {
-        document.getElementById('payAmount').value = price;
-      }
+      const currencySelect = document.getElementById('bookingCurrency');
+      const rate = parseFloat(currencySelect.options[currencySelect.selectedIndex].getAttribute('data-rate'));
+      document.getElementById('payAmount').value = Math.round(priceZAR * rate);
+      convertCurrencyDisplay();
       document.getElementById('reserve').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function togglePaymentMode() {
-      const mode = document.querySelector('input[name="paymentMethod"]:checked').value;
-      const btn = document.getElementById('submitActionBtn');
-      const amountWrap = document.getElementById('amountFieldWrapper');
+    function convertCurrencyDisplay() {
+      const select = document.getElementById('bookingCurrency');
+      const curr = select.value;
+      const rate = parseFloat(select.options[select.selectedIndex].getAttribute('data-rate'));
+      const val = parseFloat(document.getElementById('payAmount').value) || 0;
+      const inZAR = Math.round(val / rate);
 
-      if (mode === 'card') {
-        amountWrap.style.display = 'block';
-        btn.textContent = '💳 Proceed to Yoco Secure Checkout';
-        btn.style.background = 'linear-gradient(135deg, #D4AF37, #AA820A)';
-        btn.style.color = '#000';
+      const note = document.getElementById('currencyNote');
+      if (curr === 'ZAR') {
+        note.textContent = `Billed directly in South African Rands (ZAR) via Yoco 3D-Secure checkout.`;
       } else {
-        amountWrap.style.display = 'none';
-        btn.textContent = '💬 Confirm Reservation on WhatsApp';
-        btn.style.background = '#25D366';
-        btn.style.color = '#fff';
+        note.textContent = `Estimated ${curr} display. Charged as R${inZAR} ZAR via Yoco with automatic bank exchange.`;
       }
     }
 
@@ -1193,9 +1206,9 @@
     setupAutocomplete('topLocationInput', 'topLocationList');
     setupAutocomplete('bookingPickup', 'bookingPickupList');
 
+    // Robust Checkout Handler
     function handleFormSubmission(e) {
       e.preventDefault();
-      const mode = document.querySelector('input[name="paymentMethod"]:checked').value;
 
       const name = document.getElementById('custName').value;
       const email = document.getElementById('custEmail').value;
@@ -1205,30 +1218,45 @@
       const pickup = document.getElementById('bookingPickup').value;
       const dropoff = document.getElementById('bookingDropoff').value;
       const time = document.getElementById('bookingDateTime').value;
-      const amount = document.getElementById('payAmount').value;
 
-      if (mode === 'card') {
-        // Trigger Yoco Hosted Popup
-        yoco.showPopup({
-          amountInCents: Math.round(Number(amount) * 100),
+      // Calculate amount in ZAR cents for Yoco
+      const currencySelect = document.getElementById('bookingCurrency');
+      const rate = parseFloat(currencySelect.options[currencySelect.selectedIndex].getAttribute('data-rate'));
+      const enteredAmount = parseFloat(document.getElementById('payAmount').value);
+      const amountZAR = Math.round(enteredAmount / rate);
+      const amountInCents = amountZAR * 100;
+
+      const submitBtn = document.getElementById('submitActionBtn');
+      submitBtn.textContent = 'Opening Secure Checkout...';
+      submitBtn.disabled = true;
+
+      // Lazy re-instantiate if needed
+      if (!yocoInstance && window.YocoSDK) {
+        yocoInstance = new window.YocoSDK({ publicKey: YOCO_PUBLIC_KEY });
+      }
+
+      if (yocoInstance && typeof yocoInstance.showPopup === 'function') {
+        yocoInstance.showPopup({
+          amountInCents: amountInCents,
           currency: 'ZAR',
           name: 'Omari Tours Cape Town',
-          description: `Chauffeur Booking (${vehicle})`,
+          description: `Chauffeur Transfer (${vehicle})`,
           customer: {
             name: name,
             email: email,
             phone: code + phone
           },
           callback: function (result) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = '💳 Proceed to Checkout';
+
             if (result.error) {
-              const errorMessage = result.error.message;
-              alert("Payment error: " + errorMessage);
+              alert("Payment notice: " + result.error.message);
             } else {
-              // Yoco Payment Cleared!
-              alert("Payment Successful! Yoco Token: " + result.id);
-              const msg = `*PAID RESERVATION - OMARI TOURS*%0A` +
+              alert("Payment Successful! Reference ID: " + result.id);
+              const msg = `*CONFIRMED CARD RESERVATION - OMARI TOURS*%0A` +
                           `*Payment Status:* PAID VIA YOCO (Ref: ${result.id})%0A` +
-                          `*Amount:* R${amount}%0A` +
+                          `*Amount Charged:* R${amountZAR} ZAR%0A` +
                           `*Client:* ${encodeURIComponent(name)}%0A` +
                           `*Email:* ${encodeURIComponent(email)}%0A` +
                           `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
@@ -1241,14 +1269,19 @@
           }
         });
       } else {
-        // Standard WhatsApp Route
-        const msg = `*NEW RESERVATION - OMARI TOURS*%0A` +
+        submitBtn.disabled = false;
+        submitBtn.textContent = '💳 Proceed to Checkout';
+        
+        // Direct Fallback to ensure seamless booking
+        alert("Redirecting to Omari Tours dispatch to finalize your card payment...");
+        const msg = `*NEW RESERVATION (CARD PAYMENT REQUEST) - OMARI TOURS*%0A` +
                     `*Client:* ${encodeURIComponent(name)}%0A` +
                     `*Email:* ${encodeURIComponent(email)}%0A` +
                     `*Vehicle:* ${encodeURIComponent(vehicle)}%0A` +
                     `*Contact:* ${encodeURIComponent(code + phone)}%0A` +
+                    `*Amount:* R${amountZAR} ZAR%0A` +
                     `*Pickup:* ${encodeURIComponent(pickup)}%0A` +
-                    `*Dropoff / Tour:* ${encodeURIComponent(dropoff)}%0A` +
+                    `*Dropoff:* ${encodeURIComponent(dropoff)}%0A` +
                     `*Date/Time:* ${encodeURIComponent(time)}`;
         window.open(`https://wa.me/27682459527?text=${msg}`, '_blank');
       }
